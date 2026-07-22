@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ThemePreference = "system" | "light" | "dark";
 
@@ -12,12 +12,23 @@ const applyTheme = (preference: ThemePreference) => {
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState<ThemePreference>("system");
+  const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeMenu = () => setMenuOpen(false);
 
   const updateTheme = (preference: ThemePreference) => {
+    const root = document.documentElement;
+    root.classList.remove("theme-transition");
+    void root.offsetWidth;
+    root.classList.add("theme-transition");
+
     setTheme(preference);
     localStorage.setItem("portfolio-theme", preference);
     applyTheme(preference);
+
+    if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
+    transitionTimeout.current = setTimeout(() => {
+      root.classList.remove("theme-transition");
+    }, 350);
   };
 
   useEffect(() => {
@@ -35,6 +46,10 @@ export default function Navigation() {
     mediaQuery.addEventListener("change", followSystemTheme);
     return () => mediaQuery.removeEventListener("change", followSystemTheme);
   }, [theme]);
+
+  useEffect(() => () => {
+    if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
+  }, []);
 
   return <header className="topbar">
     <div className="shell">

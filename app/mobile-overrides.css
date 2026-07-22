@@ -19,6 +19,16 @@
 }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
+/* Applied briefly after selecting Light, Dark, or System for a gentle color change. */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-transition,
+  .theme-transition * {
+    transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+    transition-duration: 320ms;
+    transition-timing-function: ease;
+  }
+}
+
 :root[data-theme="dark"] { --ink: #f4f4f4; --copy: #b7b7b7; --faint: #858585; --line: #363636; --paper: #171717; }
 :root[data-theme="dark"] body,
 :root[data-theme="dark"] .topbar,
