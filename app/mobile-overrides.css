@@ -1,4 +1,7 @@
 /* Loaded after the legacy stylesheet so mobile layout rules win consistently. */
+.stat { text-align: center; }
+.stat:not(:first-child) { padding-left: 0; }
+
 @media (max-width: 650px) {
   .topbar .shell { gap: 12px; }
   .wordmark { display: flex; align-items: center; gap: 9px; font-size: 15px; }
