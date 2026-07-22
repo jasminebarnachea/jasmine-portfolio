@@ -62,23 +62,65 @@
   .about-education>.section,.about-education>.section:first-child,.about-education>.section:last-child{padding:55px 0 25px;border-left:0}
   .about-education>.section:last-child{border-top:1px solid var(--line)}
   .timeline-education .timeline-title{white-space:normal}
-  .cert-grid{display:grid!important;grid-template-columns:1fr!important;position:static;height:auto;max-width:390px}
-  .cert-card{position:static;width:auto;min-height:230px!important}
-  .cert-image{height:125px}
-  .cert-image-link{height:125px}
+  .cert-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px;position:static;height:auto;max-width:390px}
+  .cert-card{position:static;width:auto;min-height:205px!important;padding:11px!important}
+  .cert-image{height:105px}
+  .cert-image-link{height:105px}
+  .cert-card h3{font-size:12px!important;line-height:1.3}
+  .cert-card p{margin-top:6px!important;font-size:9px}
   .cert-card:nth-child(n){transform:none}
-  .cert-card:hover,.cert-card:focus-within{transform:none!important}
+  /* Touch devices have no hover state, so use press/focus feedback instead. */
+  .cert-card:active,.cert-card:focus-within{transform:translateY(-8px) scale(1.02)!important;box-shadow:0 18px 30px #00000018}
+  .cert-card:active .cert-image,.cert-card:focus-within .cert-image{transform:scale(1.06)}
   .project-grid{grid-template-columns:1fr!important;gap:20px!important}
   .project-gallery{height:250px!important}
   .project-image{width:143px!important;height:210px!important}
   .project-image-link{width:143px;height:210px}
   .project-details{padding:20px!important}
+  .project-card:active{transform:translateY(-6px);box-shadow:0 20px 38px #00000012}
+  .project-card:active .image-1,.project-card:focus-within .image-1{transform:translateX(-65px) rotate(-10deg)!important}
+  .project-card:active .image-2,.project-card:focus-within .image-2{transform:translateX(65px) rotate(10deg)!important}
   .contact-bottom{flex-wrap:wrap;justify-content:flex-start;gap:10px 16px}
   .contact-bottom span{white-space:nowrap}
   .email-modal{padding:44px 18px 20px;border-radius:18px}
   .email-modal p{font-size:16px;margin-bottom:26px}
   .email-modal-address{padding-left:16px;font-size:14px;gap:8px}
   .email-modal-address button{padding:13px 16px}
+}
+
+@media(max-width:650px) and (prefers-reduced-motion:no-preference){
+  /* Give the mobile cards the same sense of movement as desktop hover effects. */
+  .cert-card{animation:mobile-card-enter .55s both}
+  .cert-card:nth-child(2){animation-delay:.08s}.cert-card:nth-child(3){animation-delay:.16s}.cert-card:nth-child(4){animation-delay:.24s}
+  .project-card{animation:mobile-card-enter .6s both}
+  .project-card:nth-child(2){animation-delay:.12s}
+  .project-card .image-1{animation:mobile-image-left 3.8s ease-in-out infinite}
+  .project-card .image-2{animation:mobile-image-right 3.8s ease-in-out infinite}
+}
+@keyframes mobile-card-enter{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes mobile-image-left{50%{transform:translateX(-37px) rotate(-10deg)}}
+@keyframes mobile-image-right{50%{transform:translateX(37px) rotate(10deg)}}
+@media(prefers-reduced-motion:reduce){.cert-card,.project-card,.project-card .image-1,.project-card .image-2{animation:none!important}}
+
+/* Compact mobile project showcase: both projects stay visible without a long scroll. */
+@media(max-width:650px){
+  .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  .project-gallery{height:180px!important}
+  .project-image,.project-image-link{width:82px!important;height:124px!important}
+  .image-1{transform:translateX(-30px) rotate(-7deg)!important}
+  .image-2{transform:translateX(30px) rotate(7deg)!important}
+  .project-card:active .image-1,.project-card:focus-within .image-1{transform:translateX(-37px) rotate(-10deg)!important}
+  .project-card:active .image-2,.project-card:focus-within .image-2{transform:translateX(37px) rotate(10deg)!important}
+  .project-details{padding:13px!important;display:block!important}
+  .project-details h3{font-size:16px!important;letter-spacing:-.06em}
+  .project-details p{font-size:11px!important;line-height:1.45!important;margin:12px 0!important}
+  .project-details .chips{margin:0!important}
+  .project-details .chip{font-size:8px;padding:4px 6px}
+}
+@media(max-width:650px) and (prefers-reduced-motion:no-preference){
+  .scroll-reveal{opacity:0;transform:translateY(24px) scale(.96);transition:opacity .55s ease,transform .55s ease}
+  .scroll-reveal.is-visible{opacity:1;transform:none}
+  .scroll-reveal:nth-child(2){transition-delay:.12s}
 }
 
 /* Project showcase */

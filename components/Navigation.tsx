@@ -8,7 +8,9 @@ export default function Navigation() {
 
   return <header className="topbar">
     <div className="shell">
-      <a className="wordmark" href="#top">Jasmine Barnachea</a>
+      <a className="wordmark" href="#top">
+        <span>Jasmine Barnachea</span>
+      </a>
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-nav">
         {menuOpen ? "×" : "☰"}
       </button>

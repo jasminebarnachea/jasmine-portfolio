@@ -1,0 +1,87 @@
+/* Loaded after the legacy stylesheet so mobile layout rules win consistently. */
+@media (max-width: 650px) {
+  .topbar .shell { gap: 12px; }
+  .wordmark { display: flex; align-items: center; gap: 9px; font-size: 15px; }
+  .wordmark-icon { width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; object-fit: cover; }
+  .wordmark span { padding-left: 10px; border-left: 1px solid var(--line); }
+  .menu-toggle { min-width: 38px; border-left: 1px solid var(--line); }
+
+  /* Keep the introduction compact: profile on the left, text on the right. */
+  .hero-grid { grid-template-columns: 86px minmax(0, 1fr); align-items: start; gap: 14px; }
+  .portrait-wrap { display: block; order: 1; height: auto; padding-top: 5px; }
+  .portrait { width: 82px; height: 82px; transform: none !important; animation: none; }
+  .portrait-ring, .portrait-tag { display: none; }
+  .intro { order: 2; }
+  .intro h1 { margin-bottom: 14px; font-size: 32px; }
+  .intro p { margin-bottom: 14px; font-size: 14px; line-height: 1.5; }
+  .socials { gap: 12px; }
+
+  /* Summary and education share the row, separated by one clean center line. */
+  .about-education { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-education > .section,
+  .about-education > .section:first-child,
+  .about-education > .section:last-child { padding: 38px 13px 18px; border-top: 0; }
+  .about-education > .section:first-child { padding-left: 0; }
+  .about-education > .section:last-child { padding-right: 0; border-top: 0; border-left: 1px solid var(--line); }
+  .about-education .section-head { min-height: 30px; margin-bottom: 12px; align-items: flex-start; }
+  .about-education .section-title { font-size: 9px; line-height: 1.4; }
+
+  .about-line { padding: 12px 0; gap: 6px; }
+  .about-line b { font-size: 13px; }
+  .about-line p { font-size: 11px !important; line-height: 1.5 !important; }
+  .timeline-row { grid-template-columns: 1fr; gap: 5px; padding: 10px 0; }
+  .timeline-year { font-size: 9px; }
+  .timeline-education .timeline-title { font-size: 11px !important; line-height: 1.35; }
+  .timeline-education .timeline-place { font-size: 9px !important; line-height: 1.35; }
+
+  .cert-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .cert-card { min-height: 205px !important; }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .project-gallery { height: 180px !important; }
+  .project-image, .project-image-link { width: 82px !important; height: 124px !important; }
+  .image-1 { transform: translateX(-30px) rotate(-7deg) !important; }
+  .image-2 { transform: translateX(30px) rotate(7deg) !important; }
+
+  .project-details { padding: 13px !important; display: block !important; }
+  .project-details h3 { font-size: 16px !important; letter-spacing: -.06em; }
+  .project-details p { margin: 12px 0 !important; font-size: 11px !important; line-height: 1.45 !important; }
+  .project-details .chips { margin: 0 !important; }
+  .project-details .chip { padding: 4px 6px; font-size: 8px; }
+
+  .stack-groups { gap: 18px; }
+  .stack-group h3 { margin-bottom: 7px; font-size: 11px; }
+  .chips-large { gap: 6px; }
+  .stack-group .stack-chip { padding: 6px 9px; font-size: 10px; }
+}
+
+@media (max-width: 650px) and (prefers-reduced-motion: no-preference) {
+  .project-card.scroll-reveal {
+    animation: none;
+    opacity: 0;
+    transform: translateY(24px) scale(.96);
+    transition: opacity .55s ease, transform .55s ease;
+  }
+
+  .project-card.scroll-reveal.is-visible { opacity: 1; transform: none; }
+  .project-card.scroll-reveal:nth-child(2) { transition-delay: .12s; }
+}
+
+/* Every project screenshot has a small, independent motion on any screen size. */
+@media (prefers-reduced-motion: no-preference) {
+  .project-image { animation: project-image-pulse 3.2s ease-in-out infinite; }
+  .project-image-link:nth-child(2) .project-image { animation-delay: -.8s; }
+  .project-card:hover .project-image { animation-play-state: paused; }
+}
+
+@keyframes project-image-pulse {
+  50% { transform: translateY(-5px) scale(1.025); }
+}

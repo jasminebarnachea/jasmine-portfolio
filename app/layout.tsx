@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./mobile-overrides.css";
 import siteIcon from "../assets/picture/iconn.jpg";
 
 export const metadata: Metadata = {

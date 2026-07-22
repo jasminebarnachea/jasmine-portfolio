@@ -12,7 +12,7 @@ export const projects: Project[] = [
   },
   {
     title: "PetSit Connect",
-    description: "A capstone mobile application that connects pet owners with trusted pet sitters. Users can find care services, manage bookings, communicate with sitters, and keep pets cared for when owners are unavailable.",
+    description: "A mobile application that connects pet owners with trusted pet sitters. Users can find care services, manage bookings, communicate with sitters, and keep pets cared for when owners are unavailable.",
     languages: ["TypeScript", "PHP"],
   },
 ];
