@@ -1,0 +1,3 @@
+export default function Contact() {
+  return <section id="contact" className="contact"><div className="shell"><span className="section-title">Get in touch</span><h2>say hello</h2><p>For entry-level opportunities, collaboration, or just to say hi—drop me a line.</p><a className="email" href="mailto:barnacheajassy@gmail.com">barnacheajassy@gmail.com ↗</a><div className="contact-bottom"><span>La Union, Philippines</span><span>English · Filipino · Ilocano</span><span><a href="https://github.com/binibaby" target="_blank" rel="noreferrer">GitHub</a> · <a href="https://www.facebook.com/jaseeehhh" target="_blank" rel="noreferrer">Facebook</a></span><span>© 2026 Jasmine</span></div></div></section>;
+}

@@ -1,0 +1,25 @@
+import Image from "next/image";
+import capstoneOne from "../assets/picture/capstone1.jpg";
+import capstoneTwo from "../assets/picture/casptone2.jpg";
+import recipeOne from "../assets/picture/recipe1.jpg";
+import recipeTwo from "../assets/picture/recipe2.jpg";
+import { projects } from "../data/portfolio";
+
+const projectImages = [
+  [recipeOne, recipeTwo],
+  [capstoneOne, capstoneTwo],
+];
+
+export default function Focus() {
+  return <section id="focus" className="section">
+    <div className="section-head"><span className="section-title">03 — projects</span></div>
+    <div className="project-grid">
+      {projects.map((project, index) => <article className="project-card" key={project.title}>
+        <div className="project-gallery">
+          {projectImages[index].map((image, imageIndex) => <a className={`project-image-link image-${imageIndex + 1}`} href={image.src} target="_blank" rel="noreferrer" key={image.src} aria-label={`View ${project.title} app screen ${imageIndex + 1} full size`}><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></a>)}
+        </div>
+        <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div></div>
+      </article>)}
+    </div>
+  </section>;
+}
