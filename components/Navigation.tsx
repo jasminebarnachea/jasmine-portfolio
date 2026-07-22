@@ -17,8 +17,6 @@ export default function Navigation() {
 
   const updateTheme = (preference: ThemePreference) => {
     const root = document.documentElement;
-    root.classList.remove("theme-transition");
-    void root.offsetWidth;
     root.classList.add("theme-transition");
 
     setTheme(preference);
@@ -28,7 +26,7 @@ export default function Navigation() {
     if (transitionTimeout.current) clearTimeout(transitionTimeout.current);
     transitionTimeout.current = setTimeout(() => {
       root.classList.remove("theme-transition");
-    }, 350);
+    }, 200);
   };
 
   useEffect(() => {

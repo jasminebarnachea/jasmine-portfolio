@@ -19,13 +19,14 @@
 }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
-/* Applied briefly after selecting Light, Dark, or System for a gentle color change. */
+/* Applied briefly after selecting Light, Dark, or System for an immediate color change. */
 @media (prefers-reduced-motion: no-preference) {
   .theme-transition,
   .theme-transition * {
     transition-property: background-color, color, border-color, box-shadow, fill, stroke;
-    transition-duration: 320ms;
-    transition-timing-function: ease;
+    transition-duration: 180ms;
+    transition-delay: 0s;
+    transition-timing-function: ease-out;
   }
 }
 
