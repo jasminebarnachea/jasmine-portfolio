@@ -14,10 +14,9 @@ export default function Hero() {
 
   return <section className="hero">
     <div className="hero-grid">
-      <div className="portrait-wrap reveal">
+        <div className="portrait-wrap reveal">
         <div className="portrait-ring" />
         <div className="portrait"><Image src={profilePhoto} alt="Jasmine Barnachea" className="profile-photo" priority /></div>
-        <span className="portrait-tag">Jasmine P. Barnachea</span>
       </div>
       <div className="intro reveal">
         <h1>Jasmine<br />Barnachea</h1>
