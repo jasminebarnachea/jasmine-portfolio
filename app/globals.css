@@ -6,6 +6,14 @@
 .about-education>.section:first-child{padding-left:0}
 .about-education>.section:last-child{padding-right:0;border-left:1px solid var(--line)}
 .about-education .section-head{align-items:flex-start;gap:12px}
+.email-modal-backdrop{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;background:#17171766;backdrop-filter:blur(8px)}
+.email-modal{position:relative;width:min(560px,100%);padding:38px 38px 34px;background:#fff;border:1px solid #eee;border-radius:20px;box-shadow:0 22px 60px #00000030}
+.email-modal-close{position:absolute;top:18px;right:21px;border:0;background:transparent;color:#999;font:26px/1 var(--sans);cursor:pointer}
+.email-modal h2{font:400 clamp(30px,4vw,40px)/1.1 var(--mono);letter-spacing:-.08em;margin:18px 0 16px}
+.email-modal p{margin:0 0 26px;color:#555;font-size:15px}
+.email-modal-address{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 9px 9px 18px;border:1px solid #ddd;border-radius:12px;background:#fafafa;font:16px var(--mono)}
+.email-modal-address button{border:0;border-radius:9px;padding:11px 18px;background:var(--ink);color:#fff;font:600 14px var(--sans);cursor:pointer}
+.email-modal-open{display:block;margin-top:14px;padding:13px;border:1px solid #ccc;border-radius:12px;text-align:center;text-decoration:none;font-size:15px}
 
 .cert-grid{display:flex!important;justify-content:center;align-items:center;position:relative;height:360px;max-width:760px;margin:0 auto;padding:10px 6px 40px}
 .cert-card{position:absolute;width:280px;min-height:260px!important;padding:14px!important}
@@ -65,6 +73,12 @@
   .project-image{width:143px!important;height:210px!important}
   .project-image-link{width:143px;height:210px}
   .project-details{padding:20px!important}
+  .contact-bottom{flex-wrap:wrap;justify-content:flex-start;gap:10px 16px}
+  .contact-bottom span{white-space:nowrap}
+  .email-modal{padding:44px 18px 20px;border-radius:18px}
+  .email-modal p{font-size:16px;margin-bottom:26px}
+  .email-modal-address{padding-left:16px;font-size:14px;gap:8px}
+  .email-modal-address button{padding:13px 16px}
 }
 
 /* Project showcase */
