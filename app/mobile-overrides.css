@@ -166,3 +166,31 @@
 @keyframes project-image-pulse {
   50% { transform: translateY(-5px) scale(1.025); }
 }
+
+/* Six certificates stay easy to scan as a tidy desktop grid. */
+@media (min-width: 651px) {
+  .cert-grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 20px; height: auto; max-width: none; }
+  .cert-card, .cert-card:nth-child(n) { position: static; width: auto; min-height: 260px !important; transform: none; }
+  .cert-card:hover, .cert-card:focus-within, .cert-card:nth-child(n):hover, .cert-card:nth-child(n):focus-within { transform: translateY(-10px) scale(1.025) !important; }
+}
+
+.project-link { grid-column: 2; width: fit-content; font: 11px var(--mono); color: var(--ink); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+.project-link:hover { color: var(--copy); }
+
+.project-gallery--three .project-image-link { width: 160px; height: 90px; }
+.project-gallery--three .project-image { width: 160px !important; height: 90px !important; object-fit: cover; }
+.project-gallery--three .image-1 { transform: translate(-70px, -42px) rotate(-7deg) !important; }
+.project-gallery--three .image-2 { transform: translate(70px, -42px) rotate(7deg) !important; }
+.project-gallery--three .image-3 { transform: translateY(53px) !important; z-index: 2; }
+.project-card:hover .project-gallery--three .image-1 { transform: translate(-82px, -50px) rotate(-10deg) !important; }
+.project-card:hover .project-gallery--three .image-2 { transform: translate(82px, -50px) rotate(10deg) !important; }
+.project-card:hover .project-gallery--three .image-3 { transform: translateY(62px) !important; }
+
+@media (max-width: 650px) {
+  .project-link { display: inline-block; margin-top: 12px; font-size: 10px; }
+  .project-gallery--three .project-image-link { width: 96px !important; height: 54px !important; }
+  .project-gallery--three .project-image { width: 96px !important; height: 54px !important; }
+  .project-gallery--three .image-1 { transform: translate(-40px, -28px) rotate(-7deg) !important; }
+  .project-gallery--three .image-2 { transform: translate(40px, -28px) rotate(7deg) !important; }
+  .project-gallery--three .image-3 { transform: translateY(34px) !important; }
+}
