@@ -194,3 +194,15 @@
   .project-gallery--three .image-2 { transform: translate(40px, -28px) rotate(7deg) !important; }
   .project-gallery--three .image-3 { transform: translateY(34px) !important; }
 }
+
+/* Keep certificates calm and easy to browse on every screen size. */
+.cert-grid:hover .cert-card { opacity: 1; }
+.cert-card, .cert-card:nth-child(n) {
+  animation: none !important;
+  transition: border-color .2s ease, box-shadow .2s ease !important;
+}
+.cert-card:hover, .cert-card:focus-within, .cert-card:nth-child(n):hover, .cert-card:nth-child(n):focus-within {
+  transform: none !important;
+  border-color: #cfcfcf;
+  box-shadow: 0 12px 24px #0000000d;
+}
