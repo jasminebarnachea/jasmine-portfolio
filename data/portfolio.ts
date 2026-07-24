@@ -19,7 +19,7 @@ export const projects: Project[] = [
   {
     title: "AiDeaMo",
     description: "An AI-powered capstone title generator for IT and Computer Science students that creates five tailored project-title ideas at a time.",
-    languages: ["AI", "Web Development"],
+    languages: ["Gemini", "TypeScript"],
     website: "https://ai-capstone-title-generator.vercel.app",
   },
 ];
@@ -49,7 +49,7 @@ export const certifications: Certification[] = [
   { title: "CCNA: Switching, Routing, and Wireless Essentials", image: "ccna-switch" },
   { title: "CCNAv7: Introduction to Networks", image: "ccnav7" },
   { title: "Introduction to Cybersecurity", image: "intro" },
-  { title: "Database Programming with SQL — English", image: "oracle" },
+  { title: "Oracle Database Programming with SQL — English", image: "oracle" },
   { title: "Salesforce VIP Program", image: "smartbridge" },
 ];
 

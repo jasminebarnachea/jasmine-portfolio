@@ -48,26 +48,6 @@
 :root[data-theme="dark"] .email-modal-address button { background: #f4f4f4; color: #171717; }
 :root[data-theme="dark"] .theme-control select { background-color: #202020; }
 
-/* On desktop, expand the certificate fan while it is being explored. */
-@media (min-width: 651px) and (hover: hover) {
-  .cert-grid:hover .cert-card:nth-child(1) { transform: translateX(-250px) rotate(-12deg) !important; }
-  .cert-grid:hover .cert-card:nth-child(2) { transform: translateX(-84px) rotate(-4deg) !important; }
-  .cert-grid:hover .cert-card:nth-child(3) { transform: translateX(84px) rotate(4deg) !important; }
-  .cert-grid:hover .cert-card:nth-child(4) { transform: translateX(250px) rotate(12deg) !important; }
-
-  .cert-grid:hover .cert-card { opacity: .84; }
-  .cert-grid:hover .cert-card:hover,
-  .cert-grid:hover .cert-card:focus-within { opacity: 1; z-index: 3; }
-  .cert-grid:hover .cert-card:nth-child(1):hover,
-  .cert-grid:hover .cert-card:nth-child(1):focus-within { transform: translateX(-250px) translateY(-16px) rotate(-12deg) scale(1.04) !important; }
-  .cert-grid:hover .cert-card:nth-child(2):hover,
-  .cert-grid:hover .cert-card:nth-child(2):focus-within { transform: translateX(-84px) translateY(-16px) rotate(-4deg) scale(1.04) !important; }
-  .cert-grid:hover .cert-card:nth-child(3):hover,
-  .cert-grid:hover .cert-card:nth-child(3):focus-within { transform: translateX(84px) translateY(-16px) rotate(4deg) scale(1.04) !important; }
-  .cert-grid:hover .cert-card:nth-child(4):hover,
-  .cert-grid:hover .cert-card:nth-child(4):focus-within { transform: translateX(250px) translateY(-16px) rotate(12deg) scale(1.04) !important; }
-}
-
 .scroll-pop {
   opacity: 0;
   transform: translateY(20px) scale(.98);
@@ -195,14 +175,33 @@
   .project-gallery--three .image-3 { transform: translateY(34px) !important; }
 }
 
-/* Keep certificates calm and easy to browse on every screen size. */
+/* Keep certificate cards in place, with one consistent zoom interaction. */
 .cert-grid:hover .cert-card { opacity: 1; }
 .cert-card, .cert-card:nth-child(n) {
   animation: none !important;
-  transition: border-color .2s ease, box-shadow .2s ease !important;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease !important;
 }
 .cert-card:hover, .cert-card:focus-within, .cert-card:nth-child(n):hover, .cert-card:nth-child(n):focus-within {
-  transform: none !important;
+  transform: scale(1.025) !important;
   border-color: #cfcfcf;
   box-shadow: 0 12px 24px #0000000d;
 }
+.cert-image,
+.cert-card:hover .cert-image,
+.cert-card:focus-within .cert-image,
+.cert-card:active .cert-image { transform: none !important; transition: none !important; }
+
+/* Stack icons make the technology list easier to scan. */
+.stack-chip { display: inline-flex; align-items: center; gap: 7px; }
+.stack-icon { width: 20px; height: 20px; display: inline-grid; place-items: center; border-radius: 5px; background: #e9e9e9; color: #333; font: 600 8px/1 var(--mono); letter-spacing: -.06em; }
+.stack-icon--html { background: #f16529; color: #fff; }.stack-icon--css { background: #264de4; color: #fff; }.stack-icon--javascript { background: #f7df1e; color: #1b1b1b; }.stack-icon--typescript { background: #3178c6; color: #fff; }.stack-icon--react { background: #61dafb; color: #15232d; font-size: 14px; }.stack-icon--expo-go { background: #111; color: #fff; }.stack-icon--php { background: #777bb4; color: #fff; }.stack-icon--java { background: #e76f00; color: #fff; }.stack-icon--c { background: #00599c; color: #fff; }.stack-icon--mysql { background: #00758f; color: #fff; }.stack-icon--mongodb { background: #47a248; color: #fff; }.stack-icon--laravel { background: #ff2d20; color: #fff; }.stack-icon--rest-apis { background: #7b61ff; color: #fff; }.stack-icon--networking { background: #168aad; color: #fff; }.stack-icon--ccna { background: #049fd9; color: #fff; }.stack-icon--routing { background: #5b8c00; color: #fff; }.stack-icon--switching { background: #8e44ad; color: #fff; }
+
+/* Fixed-side chat launcher and conversation panel. */
+.jas-chat { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: grid; justify-items: end; gap: 12px; }
+.jas-chat-launcher { display: inline-flex; align-items: center; gap: 8px; padding: 13px 16px; border: 1px solid var(--ink); border-radius: 999px; background: var(--ink); color: var(--paper); box-shadow: 0 12px 30px #00000026; font: 500 12px var(--mono); cursor: pointer; }
+.jas-chat-launcher span { font-size: 16px; }.jas-chat-launcher:hover { opacity: .88; }
+.jas-chat-panel { width: min(370px, calc(100vw - 30px)); overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: 0 18px 48px #00000022; }
+.jas-chat-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 18px; border-bottom: 1px solid var(--line); }.jas-chat-kicker { color: var(--faint); font: 10px var(--mono); text-transform: uppercase; }.jas-chat-header h2 { margin: 5px 0 0; font: 500 19px var(--mono); letter-spacing: -.07em; }.jas-chat-close { border: 0; background: transparent; color: var(--copy); font: 26px/1 var(--sans); cursor: pointer; }
+.jas-chat-messages { display: grid; gap: 10px; max-height: 320px; min-height: 180px; overflow-y: auto; padding: 16px; }.jas-chat-message { max-width: 86%; margin: 0; padding: 10px 12px; border-radius: 12px; font-size: 13px; line-height: 1.45; }.jas-chat-message--assistant { justify-self: start; background: #f1f1f1; color: #3e3e3e; border-bottom-left-radius: 3px; }.jas-chat-message--user { justify-self: end; background: var(--ink); color: var(--paper); border-bottom-right-radius: 3px; }
+.jas-chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); }.jas-chat-form input { min-width: 0; flex: 1; border: 1px solid var(--line); border-radius: 9px; padding: 10px; background: var(--paper); color: var(--ink); font: 12px var(--sans); }.jas-chat-form button { border: 0; border-radius: 9px; padding: 0 12px; background: var(--ink); color: var(--paper); font: 11px var(--mono); cursor: pointer; }.jas-chat-form button:disabled { cursor: not-allowed; opacity: .45; }
+@media (max-width: 650px) { .jas-chat { right: 15px; bottom: 15px; }.jas-chat-launcher { padding: 12px 14px; }.jas-chat-messages { max-height: 280px; } }
