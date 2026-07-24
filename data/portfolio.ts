@@ -22,6 +22,12 @@ export const projects: Project[] = [
     languages: ["Gemini", "TypeScript"],
     website: "https://ai-capstone-title-generator.vercel.app",
   },
+  {
+    title: "Cafe Pulse",
+    description: "A modern point-of-sale and business analytics system built for cafés and coffee shops. Cashiers can manage orders, payments, receipts, and customer preferences, while administrators can track sales, staff activity, product performance, and AI-powered business insights from one connected dashboard.",
+    languages: ["TypeScript", "Groq AI"],
+    website: "https://cafe-pulse-advertise.vercel.app",
+  },
 ];
 
 export type FocusArea = {

@@ -9,12 +9,16 @@ import recipeTwo from "../assets/picture/recipe2.jpg";
 import aiOne from "../assets/picture/ai.jpg";
 import aiTwo from "../assets/picture/ai2.jpg";
 import aiThree from "../assets/picture/ai3.jpg";
+import advertiseOne from "../assets/picture/advertise2.png";
+import advertiseTwo from "../assets/picture/advertise3.png";
+import advertiseThree from "../assets/picture/advertise.jpg";
 import { projects } from "../data/portfolio";
 
 const projectImages = [
   [recipeOne, recipeTwo],
   [capstoneOne, capstoneTwo],
   [aiOne, aiTwo, aiThree],
+  [advertiseOne, advertiseTwo, advertiseThree],
 ];
 
 export default function Focus() {
