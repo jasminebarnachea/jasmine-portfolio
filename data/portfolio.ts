@@ -28,6 +28,12 @@ export const projects: Project[] = [
     languages: ["TypeScript", "Groq AI"],
     website: "https://cafe-pulse-advertise.vercel.app",
   },
+  {
+    title: "LGU-DigiVault",
+    description: "A modern digital records and AI-powered archiving system built for local government units. Administrators can scan, upload, classify, secure, track, and share official documents, while constituents can access authorized public or privately shared records, receive release notifications, download files, and communicate directly with LGU offices—all from one centralized platform.",
+    languages: ["JavaScript", "Grok AI"],
+    website: "https://lgu-digi-vault.vercel.app",
+  },
 ];
 
 export type FocusArea = {

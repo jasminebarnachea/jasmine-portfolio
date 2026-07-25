@@ -47,6 +47,7 @@
 :root[data-theme="dark"] .email-modal-address { background: #202020; border-color: var(--line); }
 :root[data-theme="dark"] .email-modal-address button { background: #f4f4f4; color: #171717; }
 :root[data-theme="dark"] .theme-control select { background-color: #202020; }
+:root[data-theme="dark"] .menu-toggle { color: #fff; }
 
 .scroll-pop {
   opacity: 0;
