@@ -12,6 +12,9 @@ import aiThree from "../assets/picture/ai3.jpg";
 import advertiseOne from "../assets/picture/advertise2.png";
 import advertiseTwo from "../assets/picture/advertise3.png";
 import advertiseThree from "../assets/picture/advertise.jpg";
+import lguOne from "../assets/picture/lgu2.png";
+import lguTwo from "../assets/picture/lgu3.png";
+import lguThree from "../assets/picture/lgu.png";
 import { projects } from "../data/portfolio";
 
 const projectImages = [
@@ -19,6 +22,7 @@ const projectImages = [
   [capstoneOne, capstoneTwo],
   [aiOne, aiTwo, aiThree],
   [advertiseOne, advertiseTwo, advertiseThree],
+  [lguOne, lguTwo, lguThree],
 ];
 
 export default function Focus() {
