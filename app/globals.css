@@ -32,6 +32,8 @@
 .experience-meta{text-align:right;color:#777;font:10px/1.45 var(--mono)}
 .experience-meta span,.experience-meta time{display:block}
 .experience-item p{margin:12px 0 0;color:var(--copy);font-size:12px;line-height:1.55}
+.education-list .experience-item{min-height:74px}
+.education-heading h3{font:600 14px/1.4 var(--sans);margin:0}
 
 .cert-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:10px 6px 40px}
 .cert-card{min-height:260px!important;padding:14px!important}
