@@ -66,8 +66,8 @@ export default function Navigation() {
         {menuOpen ? "×" : "☰"}
       </button>
       <nav id="site-nav" className={`nav ${menuOpen ? "open" : ""}`}>
-        <a onClick={closeMenu} href="#about">about</a>
         <a onClick={closeMenu} href="#credentials">education</a>
+        <a onClick={closeMenu} href="#about">experience</a>
         <a onClick={closeMenu} href="#focus">projects</a>
         <a onClick={closeMenu} href="#contact">contact</a>
       </nav>
