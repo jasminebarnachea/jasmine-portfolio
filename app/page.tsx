@@ -13,7 +13,7 @@ export default function Home() {
   return <div className="site">
     <Navigation />
     <ScrollReveal />
-    <main id="top" className="shell"><Hero /><div className="about-education"><About /><Credentials /></div><Focus /><Stack /><Certifications /></main>
+    <main id="top" className="shell"><Hero /><div className="about-education"><Credentials /><About /></div><Focus /><Stack /><Certifications /></main>
     <Contact />
     <JasChat />
   </div>;
