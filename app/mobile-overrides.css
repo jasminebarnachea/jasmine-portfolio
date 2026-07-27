@@ -122,14 +122,8 @@
 }
 
 @media (max-width: 650px) {
-  :root,
-  :root[data-theme="dark"] {
-    --ink: #171717;
-    --copy: #646464;
-    --faint: #ababab;
-    --line: #e8e8e8;
-    --paper: #fff;
-  }
+  :root { --mobile-surface: #fefefe; }
+  :root[data-theme="dark"] { --mobile-surface: var(--paper); }
 
   body,
   .site,
@@ -140,7 +134,7 @@
   .experience-list,
   .section,
   .contact {
-    background-color: #fff !important;
+    background-color: var(--mobile-surface) !important;
   }
 
   .project-card { border-radius: 15px; }
