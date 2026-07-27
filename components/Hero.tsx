@@ -24,7 +24,7 @@ export default function Hero() {
         <h1>Jasmine<br />Barnachea</h1>
         <p>I’m an Information Technology graduate. I’m building a strong foundation in web and mobile development, databases, and networks.</p>
         <p>Right now, I’m looking for an entry-level opportunity where I can learn from a team and turn my skills into useful work.</p>
-        <div className="socials"><a href="#email" onClick={(event) => { event.preventDefault(); setEmailOpen(true); }}>email ↗</a><a href="https://github.com/binibaby" target="_blank" rel="noreferrer">github ↗</a><a href="#resume" onClick={(event) => { event.preventDefault(); setResumeOpen(true); }}>resume ↗</a></div>
+        <div className="socials"><a href="#email" onClick={(event) => { event.preventDefault(); setEmailOpen(true); }}>email ↗</a><a href="https://github.com/jasminebarnachea" target="_blank" rel="noreferrer">github ↗</a><a href="#resume" onClick={(event) => { event.preventDefault(); setResumeOpen(true); }}>resume ↗</a></div>
       </div>
     </div>
     <div className="stats"><div className="stat"><strong>BSIT</strong><span>Graduate</span></div><div className="stat"><strong>2026</strong><span>Class of</span></div><div className="stat"><strong>Agoo</strong><span>La Union</span></div></div>

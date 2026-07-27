@@ -3,6 +3,7 @@ export type Project = {
   description: string;
   languages: string[];
   website?: string;
+  video?: string;
 };
 
 export const projects: Project[] = [
@@ -15,6 +16,7 @@ export const projects: Project[] = [
     title: "PetSit Connect",
     description: "A mobile application that connects pet owners with trusted pet sitters. Users can find care services, manage bookings, communicate with sitters, and keep pets cared for when owners are unavailable.",
     languages: ["TypeScript", "PHP"],
+    video: "/PetSit-Con.m4v",
   },
   {
     title: "AiDeaMo",
@@ -33,6 +35,12 @@ export const projects: Project[] = [
     description: "A modern digital records and AI-powered archiving system built for local government units. Administrators can scan, upload, classify, secure, track, and share official documents, while constituents can access authorized public or privately shared records, receive release notifications, download files, and communicate directly with LGU offices—all from one centralized platform.",
     languages: ["JavaScript", "Grok AI"],
     website: "https://lgu-digi-vault.vercel.app",
+  },
+  {
+    title: "CareerBridge AI",
+    description: "An AI-powered career platform that helps users explore opportunities and receive personalized guidance for their career journey.",
+    languages: ["TypeScript", "Grok AI"],
+    website: "https://career-bridge-ai-mauve.vercel.app",
   },
 ];
 
