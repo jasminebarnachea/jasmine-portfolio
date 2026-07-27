@@ -151,9 +151,9 @@
   .menu-toggle { min-width: 38px; border-left: 1px solid var(--line); }
 
   /* Keep the introduction compact: profile on the left, text on the right. */
-  .hero-grid { grid-template-columns: 114px minmax(0, 1fr); align-items: start; gap: 12px 14px; }
+  .hero-grid { grid-template-columns: 128px minmax(0, 1fr); align-items: start; gap: 12px 14px; }
   .portrait-wrap { display: block; grid-column: 1; grid-row: 1 / span 2; height: auto; padding-top: 5px; }
-  .portrait { width: 110px; height: 110px; background: var(--mobile-surface); transform: none !important; animation: none; }
+  .portrait { width: 124px; height: 124px; background: var(--mobile-surface); transform: none !important; animation: none; }
   .profile-photo--opaque { display: none; }
   .profile-photo--transparent { display: block; }
   :root[data-theme="dark"] .portrait { background: #fff; }
@@ -161,7 +161,7 @@
   :root[data-theme="dark"] .profile-photo--transparent { display: none; }
   .portrait-ring, .portrait-tag { display: none; }
   .intro { display: contents; }
-  .intro h1 { grid-column: 2; grid-row: 1; align-self: center; margin: 0; font-size: 32px; }
+  .intro h1 { grid-column: 2; grid-row: 1; align-self: center; margin: 0; font-size: 36px; }
   .intro p { grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 1.6; }
   .intro p:first-of-type { grid-row: 3; }
   .intro p:nth-of-type(2) { grid-row: 4; }

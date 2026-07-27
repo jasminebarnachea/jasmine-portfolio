@@ -19,11 +19,20 @@ const revealSelector = [
   ".contact .shell > .email",
 ].join(", ");
 
+const mobileRevealSelector = [
+  ".hero-grid .intro h1",
+  ".hero-grid .intro p",
+  ".hero-grid .socials",
+].join(", ");
+
 export default function ScrollReveal() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const elements = document.querySelectorAll<HTMLElement>(revealSelector);
+    const selector = window.matchMedia("(max-width: 650px)").matches
+      ? `${revealSelector}, ${mobileRevealSelector}`
+      : revealSelector;
+    const elements = document.querySelectorAll<HTMLElement>(selector);
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {
