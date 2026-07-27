@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import capstoneOne from "../assets/picture/capstone1.jpg";
 import capstoneTwo from "../assets/picture/casptone2.jpg";
@@ -15,6 +15,9 @@ import advertiseThree from "../assets/picture/advertise.jpg";
 import lguOne from "../assets/picture/lgu2.png";
 import lguTwo from "../assets/picture/lgu3.png";
 import lguThree from "../assets/picture/lgu.png";
+import careerBridgeOne from "../assets/picture/cb.png";
+import careerBridgeTwo from "../assets/picture/cb1.png";
+import careerBridgeThree from "../assets/picture/cb2.png";
 import { projects } from "../data/portfolio";
 
 const projectImages = [
@@ -23,10 +26,12 @@ const projectImages = [
   [aiOne, aiTwo, aiThree],
   [advertiseOne, advertiseTwo, advertiseThree],
   [lguOne, lguTwo, lguThree],
+  [careerBridgeOne, careerBridgeTwo, careerBridgeThree],
 ];
 
 export default function Focus() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   useEffect(() => {
     const cards = sectionRef.current?.querySelectorAll<HTMLElement>(".scroll-reveal");
@@ -46,15 +51,36 @@ export default function Focus() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!activeVideo) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveVideo(null);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [activeVideo]);
+
   return <section id="focus" className="section" ref={sectionRef}>
     <div className="section-head"><span className="section-title">03 — projects</span></div>
     <div className="project-grid">
       {projects.map((project, index) => <article className="project-card scroll-reveal" key={project.title}>
-        <div className={`project-gallery ${projectImages[index].length === 3 ? "project-gallery--three" : ""}`}>
-          {projectImages[index].map((image, imageIndex) => <a className={`project-image-link image-${imageIndex + 1}`} href={image.src} target="_blank" rel="noreferrer" key={image.src} aria-label={`View ${project.title} app screen ${imageIndex + 1} full size`}><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></a>)}
+        <div className={`project-gallery ${projectImages[index].length === 3 ? "project-gallery--three" : ""} ${projectImages[index].length === 0 ? "project-gallery--empty" : ""}`}>
+          {projectImages[index].length === 0
+            ? <span className="project-placeholder" aria-hidden="true">CB<span>AI</span></span>
+            : projectImages[index].map((image, imageIndex) => <a className={`project-image-link image-${imageIndex + 1}`} href={image.src} target="_blank" rel="noreferrer" key={image.src} aria-label={`View ${project.title} app screen ${imageIndex + 1} full size`}><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></a>)}
         </div>
-        <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div>{project.website && <a className="project-link" href={project.website} target="_blank" rel="noreferrer">Visit live site ↗</a>}</div>
+        <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div><div className="project-actions">{project.video && <button className="project-link project-video-button" type="button" onClick={() => setActiveVideo(project.video!)}>Watch demo ▶</button>}{project.website && <a className="project-link" href={project.website} target="_blank" rel="noreferrer">Visit live site ↗</a>}</div></div>
       </article>)}
     </div>
+    {activeVideo && <div className="video-modal-backdrop" role="presentation" onMouseDown={(event) => {
+      if (event.target === event.currentTarget) setActiveVideo(null);
+    }}>
+      <div className="video-modal" role="dialog" aria-modal="true" aria-label="PetSit Connect demo video">
+        <button className="video-modal-close" type="button" onClick={() => setActiveVideo(null)} aria-label="Close video">×</button>
+        <video src={activeVideo} controls autoPlay playsInline preload="metadata">Your browser does not support this video.</video>
+      </div>
+    </div>}
   </section>;
 }

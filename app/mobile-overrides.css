@@ -78,23 +78,23 @@
   .intro p { margin-bottom: 14px; font-size: 14px; line-height: 1.5; }
   .socials { gap: 12px; }
 
-  /* Summary and education share the row, separated by one clean center line. */
-  .about-education { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Professional experience comes first, followed by full-width education. */
+  .about-education { display: flex; flex-direction: column; }
   .about-education > .section,
   .about-education > .section:first-child,
-  .about-education > .section:last-child { padding: 38px 13px 18px; border-top: 0; }
-  .about-education > .section:first-child { padding-left: 0; }
-  .about-education > .section:last-child { padding-right: 0; border-top: 0; border-left: 1px solid var(--line); }
-  .about-education .section-head { min-height: 30px; margin-bottom: 12px; align-items: flex-start; }
-  .about-education .section-title { font-size: 9px; line-height: 1.4; }
+  .about-education > .section:last-child { padding: 48px 0 22px; border-left: 0; }
+  .about-education > #about { order: 1; border-top: 1px solid var(--line); }
+  .about-education > #credentials { order: 2; border-top: 1px solid var(--line); }
+  .about-education .section-head { min-height: 0; margin-bottom: 20px; align-items: flex-start; }
+  .about-education .section-title { font-size: 11px; line-height: 1.4; }
 
   .about-line { padding: 12px 0; gap: 6px; }
-  .about-line b { font-size: 13px; }
-  .about-line p { font-size: 11px !important; line-height: 1.5 !important; }
+  .about-line b { font-size: 15px; }
+  .about-line p { font-size: 13px !important; line-height: 1.55 !important; }
   .timeline-row { grid-template-columns: 1fr; gap: 5px; padding: 10px 0; }
   .timeline-year { font-size: 9px; }
-  .timeline-education .timeline-title { font-size: 11px !important; line-height: 1.35; }
-  .timeline-education .timeline-place { font-size: 9px !important; line-height: 1.35; }
+  .timeline-education .timeline-title { font-size: 13px !important; line-height: 1.4; }
+  .timeline-education .timeline-place { font-size: 11px !important; line-height: 1.4; }
 
   .cert-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -103,21 +103,18 @@
 
   .cert-card { min-height: 205px !important; }
 
-  .project-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 12px !important;
-  }
+  .project-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
 
-  .project-gallery { height: 180px !important; }
-  .project-image, .project-image-link { width: 82px !important; height: 124px !important; }
-  .image-1 { transform: translateX(-30px) rotate(-7deg) !important; }
-  .image-2 { transform: translateX(30px) rotate(7deg) !important; }
+  .project-gallery { height: 250px !important; }
+  .project-image, .project-image-link { width: 143px !important; height: 210px !important; }
+  .image-1 { transform: translateX(-55px) rotate(-7deg) !important; }
+  .image-2 { transform: translateX(55px) rotate(7deg) !important; }
 
-  .project-details { padding: 13px !important; display: block !important; }
-  .project-details h3 { font-size: 16px !important; letter-spacing: -.06em; }
-  .project-details p { margin: 12px 0 !important; font-size: 11px !important; line-height: 1.45 !important; }
+  .project-details { padding: 20px !important; display: block !important; }
+  .project-details h3 { font-size: 21px !important; letter-spacing: -.06em; }
+  .project-details p { margin: 14px 0 !important; font-size: 13px !important; line-height: 1.55 !important; }
   .project-details .chips { margin: 0 !important; }
-  .project-details .chip { padding: 4px 6px; font-size: 8px; }
+  .project-details .chip { padding: 5px 8px; font-size: 10px; }
 
   .stack-groups { gap: 18px; }
   .stack-group h3 { margin-bottom: 7px; font-size: 11px; }
@@ -157,6 +154,22 @@
 
 .project-link { grid-column: 2; width: fit-content; font: 11px var(--mono); color: var(--ink); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
 .project-link:hover { color: var(--copy); }
+.project-actions { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+.project-video-button { border: 0; border-bottom: 1px solid currentColor; background: transparent; cursor: pointer; }
+.project-gallery--empty { background: linear-gradient(135deg, #f3f0ff, #e7f1ff); }
+.project-placeholder { display: flex; align-items: baseline; color: #6f63d9; font: 500 72px/1 var(--mono); letter-spacing: -.14em; }
+.project-placeholder span { margin-left: 8px; font-size: 22px; letter-spacing: -.08em; }
+.video-modal-backdrop { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 18px; background: #111b; backdrop-filter: blur(8px); }
+.video-modal { position: relative; width: min(760px, 100%); padding: 42px 12px 12px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: 0 22px 60px #0006; }
+.video-modal video { display: block; width: 100%; max-height: 78vh; border-radius: 10px; background: #000; }
+.video-modal-close { position: absolute; top: 7px; right: 13px; border: 0; background: transparent; color: var(--ink); font: 28px/1 var(--sans); cursor: pointer; }
+:root[data-theme="dark"] .project-gallery--empty { background: linear-gradient(135deg, #28233d, #1d2938); }
+
+@media (max-width: 650px) {
+  .video-modal-backdrop { padding: 10px; }
+  .video-modal { width: 100%; max-height: calc(100dvh - 20px); padding: 40px 8px 8px; border-radius: 14px; }
+  .video-modal video { width: 100%; height: auto; max-height: calc(100dvh - 70px); object-fit: contain; }
+}
 
 .project-gallery--three .project-image-link { width: 160px; height: 90px; }
 .project-gallery--three .project-image { width: 160px !important; height: 90px !important; object-fit: cover; }
@@ -169,6 +182,8 @@
 
 @media (max-width: 650px) {
   .project-link { display: inline-block; margin-top: 12px; font-size: 10px; }
+  .project-actions { display: flex; margin-top: 2px; }
+  .project-actions .project-link { margin-top: 10px; }
   .project-gallery--three .project-image-link { width: 96px !important; height: 54px !important; }
   .project-gallery--three .project-image { width: 96px !important; height: 54px !important; }
   .project-gallery--three .image-1 { transform: translate(-40px, -28px) rotate(-7deg) !important; }

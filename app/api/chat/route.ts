@@ -6,7 +6,7 @@ type ChatMessage = { role: "assistant" | "user"; content: string };
 export const runtime = "nodejs";
 
 const portfolioContext = [
-  "Contact: Email: barnacheajassy@gmail.com. Location: La Union, Philippines. Languages: English, Filipino, and Ilocano. GitHub: https://github.com/binibaby. Facebook: https://www.facebook.com/jaseeehhh.",
+  "Contact: Email: barnacheajassy@gmail.com. Location: La Union, Philippines. Languages: English, Filipino, and Ilocano. GitHub: https://github.com/jasminebarnachea. Facebook: https://www.facebook.com/jaseeehhh.",
   "Education: Bachelor of Science in Information Technology at Universidad de Dagupan (2023–2026). Previously studied BSIT at Polytechnic College of La Union (2022–2023).",
   `Projects: ${projects.map((project) => `${project.title} — ${project.description} Technologies: ${project.languages.join(", ")}.${project.website ? ` Live site: ${project.website}.` : ""}`).join(" ")}`,
   `Skills and focus areas: ${focusAreas.map((area) => `${area.title}: ${area.text} (${area.tags.join(", ")})`).join("; ")}.`,
