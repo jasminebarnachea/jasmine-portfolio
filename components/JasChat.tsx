@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useRef, useState } from "react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Cancel01Icon, SentIcon, SparklesIcon } from "@hugeicons/core-free-icons";
 
 type Message = { role: "assistant" | "user"; content: string };
 
@@ -54,7 +56,7 @@ export default function JasChat() {
     {open && <section className="jas-chat-panel" aria-labelledby="jas-chat-title">
       <header className="jas-chat-header">
         <div><span className="jas-chat-kicker">Portfolio assistant</span><h2 id="jas-chat-title">Jas Chat Lang</h2></div>
-        <button className="jas-chat-close" type="button" onClick={() => setOpen(false)} aria-label="Close chat">×</button>
+        <button className="jas-chat-close" type="button" onClick={() => setOpen(false)} aria-label="Close chat"><HugeiconsIcon icon={Cancel01Icon} size={22} strokeWidth={1.7} aria-hidden="true" /></button>
       </header>
       <div className="jas-chat-messages" aria-live="polite">
         {messages.map((message, index) => <p className={`jas-chat-message jas-chat-message--${message.role}`} key={`${message.role}-${index}`}>{message.content}</p>)}
@@ -63,11 +65,11 @@ export default function JasChat() {
       <form className="jas-chat-form" onSubmit={sendMessage}>
         <label className="sr-only" htmlFor="jas-chat-input">Your message</label>
         <input ref={inputRef} id="jas-chat-input" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Jasmine…" maxLength={500} />
-        <button type="submit" disabled={isSending || !input.trim()}>Send</button>
+        <button className="icon-button-label" type="submit" disabled={isSending || !input.trim()}><HugeiconsIcon icon={SentIcon} size={15} strokeWidth={1.8} aria-hidden="true" />Send</button>
       </form>
     </section>}
     <button className="jas-chat-launcher" type="button" onClick={open ? () => setOpen(false) : openChat} aria-expanded={open} aria-controls="jas-chat-title">
-      <span aria-hidden="true">✦</span> Jas Chat Lang
+      <HugeiconsIcon icon={SparklesIcon} size={18} strokeWidth={1.8} aria-hidden="true" /> Jas Chat Lang
     </button>
   </aside>;
 }

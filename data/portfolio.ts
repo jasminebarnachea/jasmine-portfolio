@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: "PetSit Connect",
     description: "A mobile application that connects pet owners with trusted pet sitters. Users can find care services, manage bookings, communicate with sitters, and keep pets cared for when owners are unavailable.",
     languages: ["TypeScript", "PHP"],
-    video: "/PetSit-Con.m4v",
+    video: "/PetSit-Konek.mp4",
   },
   {
     title: "AiDeaMo",

@@ -13,10 +13,18 @@
   border-radius: 999px;
   padding: 7px 26px 7px 11px;
   color: var(--ink);
-  background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='m3 4 3 3 3-3' fill='none' stroke='%23646464' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 8px center;
+  background: var(--paper);
   font: 11px var(--mono);
   cursor: pointer;
 }
+.theme-control { position: relative; display: inline-flex; align-items: center; }
+.theme-control-icon { position: absolute; right: 8px; pointer-events: none; color: var(--copy); }
+.menu-toggle { display: inline-grid; place-items: center; }
+.icon-link, .icon-button-label { display: inline-flex; align-items: center; gap: 6px; }
+.icon-link--center { justify-content: center; }
+.icon-button-label { justify-content: center; }
+.email-modal-close, .video-modal-close, .jas-chat-close { display: inline-grid; place-items: center; }
+.contact-socials { display: inline-flex; align-items: center; gap: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* Applied briefly after selecting Light, Dark, or System for an immediate color change. */
@@ -216,7 +224,7 @@
 .jas-chat { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: grid; justify-items: end; gap: 12px; }
 .jas-chat-launcher { position: relative; isolation: isolate; display: inline-flex; align-items: center; gap: 8px; padding: 13px 16px; border: 1px solid var(--ink); border-radius: 999px; background: var(--ink); color: var(--paper); box-shadow: 0 12px 30px #00000026; font: 500 12px var(--mono); cursor: pointer; transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease; }
 .jas-chat-launcher::before { content: ""; position: absolute; inset: -5px; z-index: -1; border: 1px solid currentColor; border-radius: inherit; opacity: 0; pointer-events: none; }
-.jas-chat-launcher span { display: inline-block; font-size: 16px; }
+.jas-chat-launcher svg { display: inline-block; flex: 0 0 auto; }
 .jas-chat-launcher:hover { opacity: .92; transform: translateY(-3px) scale(1.03); box-shadow: 0 16px 36px #00000032; }
 .jas-chat-panel { width: min(370px, calc(100vw - 30px)); overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: 0 18px 48px #00000022; }
 .jas-chat-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 18px; border-bottom: 1px solid var(--line); }.jas-chat-kicker { color: var(--faint); font: 10px var(--mono); text-transform: uppercase; }.jas-chat-header h2 { margin: 5px 0 0; font: 500 19px var(--mono); letter-spacing: -.07em; }.jas-chat-close { border: 0; background: transparent; color: var(--copy); font: 26px/1 var(--sans); cursor: pointer; }
@@ -230,7 +238,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .jas-chat-launcher:not([aria-expanded="true"]) { animation: jas-chat-float 3s ease-in-out infinite; }
   .jas-chat-launcher:not([aria-expanded="true"])::before { animation: jas-chat-pulse 2.4s ease-out infinite; }
-  .jas-chat-launcher:not([aria-expanded="true"]) span { animation: jas-chat-sparkle 1.8s ease-in-out infinite; }
+  .jas-chat-launcher:not([aria-expanded="true"]) svg { animation: jas-chat-sparkle 1.8s ease-in-out infinite; }
   .jas-chat-launcher:hover { animation: none; }
 }
 
