@@ -38,7 +38,7 @@ export const projects: Project[] = [
   },
   {
     title: "CareerBridge AI",
-    description: "A modern AI-powered resume analysis and school recruitment system. Applicants upload a PDF or DOCX resume, which the system analyzes to extract their skills, education, experience, and qualifications. It then compares the resume with every available position, generates match scores, identifies missing skills, and recommends the most suitable job or office. Administrators and HR staff can review ranked applicants, manage applications and interviews, and monitor recruitment insights from one connected dashboard.",
+    description: "A modern AI-powered resume analysis and school recruitment system. Applicants upload a PDF or DOCX resume, which the system analyzes to extract their skills, education, experience, and qualifications. It then compares the resume with every available position, generates match scores, identifies missing skills, and recommends the most suitable job or office. Administrators can review ranked applicants, manage applications and interviews, and monitor recruitment insights from one connected dashboard.",
     languages: ["TypeScript", "Grok AI"],
     website: "https://career-bridge-ai-mauve.vercel.app",
   },

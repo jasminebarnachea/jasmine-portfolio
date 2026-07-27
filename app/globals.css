@@ -25,8 +25,8 @@
 .experience-list::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--copy)}
 .experience-item{position:relative;padding:0 0 25px}
 .experience-item+.experience-item{padding-top:23px;border-top:1px solid var(--line)}
-.experience-dot{position:absolute;left:-22px;top:7px;width:11px;height:11px;border:2px solid var(--copy);border-radius:50%;background:var(--copy);z-index:1}
-.experience-item+.experience-item .experience-dot{top:30px}
+.experience-dot{position:absolute;left:-22px;top:5px;width:11px;height:11px;border:2px solid var(--copy);border-radius:50%;background:var(--copy);z-index:1}
+.experience-item+.experience-item .experience-dot{top:28px}
 .experience-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(160px,.8fr);gap:18px;align-items:start}
 .experience-heading h3{font:600 15px/1.35 var(--sans);margin:0}
 .experience-meta{text-align:right;color:#777;font:10px/1.45 var(--mono)}
