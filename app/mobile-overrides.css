@@ -12,6 +12,7 @@
 
 .profile-photo {
   object-position: 50% 50%;
+  filter: none;
 }
 
 .profile-photo--opaque { display: none; }
