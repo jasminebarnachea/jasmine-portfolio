@@ -3,7 +3,9 @@
 import { useEffect } from "react";
 
 const revealSelector = [
+  ".stats .stat",
   ".section-head",
+  ".about-education .experience-list",
   ".about-education .experience-item",
   ".about-line",
   ".timeline-row",

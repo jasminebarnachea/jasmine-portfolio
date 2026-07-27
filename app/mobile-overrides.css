@@ -65,11 +65,44 @@
 
 .scroll-pop-visible { opacity: 1; transform: none; }
 
+/* Draw each education/experience timeline and pop its dots in as entries appear. */
+.about-education .experience-list.scroll-pop {
+  opacity: 1;
+  transform: none;
+}
+
+.about-education .experience-list.scroll-pop::before {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .75s ease var(--scroll-pop-delay, 0ms);
+}
+
+.about-education .experience-list.scroll-pop-visible::before {
+  transform: scaleY(1);
+}
+
+.about-education .experience-item.scroll-pop .experience-dot {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity .3s ease var(--scroll-pop-delay, 0ms), transform .4s cubic-bezier(.2, .8, .2, 1.35) var(--scroll-pop-delay, 0ms);
+}
+
+.about-education .experience-item.scroll-pop-visible .experience-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Give project cards the same soft geometry as the portfolio's other panels. */
 .project-card { border-radius: 18px; }
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-pop { opacity: 1; transform: none; transition: none; }
+  .about-education .experience-list.scroll-pop::before,
+  .about-education .experience-item.scroll-pop .experience-dot {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 650px) {
