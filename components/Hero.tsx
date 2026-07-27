@@ -5,6 +5,7 @@ import { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, Copy01Icon, Download02Icon, File01Icon, Github01Icon, Mail02Icon } from "@hugeicons/core-free-icons";
 import profilePhoto from "../assets/picture/jasmineicon.png";
+import transparentProfilePhoto from "../assets/picture/jasmineicon-transparent.png";
 import resumeImage from "../assets/picture/JasmineBarnachea-Portfolio.jpg";
 
 export default function Hero() {
@@ -19,7 +20,10 @@ export default function Hero() {
   return <section className="hero">
     <div className="hero-grid">
         <div className="portrait-wrap reveal">
-        <div className="portrait"><Image src={profilePhoto} alt="Jasmine Barnachea" className="profile-photo" priority /></div>
+        <div className="portrait">
+          <Image src={profilePhoto} alt="Jasmine Barnachea" className="profile-photo profile-photo--opaque" priority />
+          <Image src={transparentProfilePhoto} alt="" className="profile-photo profile-photo--transparent" aria-hidden="true" />
+        </div>
       </div>
       <div className="intro reveal">
         <h1>Jasmine<br />Barnachea</h1>

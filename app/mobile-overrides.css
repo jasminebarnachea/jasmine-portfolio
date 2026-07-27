@@ -14,6 +14,10 @@
   object-position: 50% 50%;
 }
 
+.profile-photo--transparent {
+  display: none;
+}
+
 .portrait-ring {
   display: none;
 }
@@ -148,9 +152,11 @@
   .hero-grid { grid-template-columns: 114px minmax(0, 1fr); align-items: start; gap: 14px; }
   .portrait-wrap { display: block; order: 1; height: auto; padding-top: 5px; }
   .portrait { width: 110px; height: 110px; background: var(--mobile-surface); transform: none !important; animation: none; }
-  .profile-photo { mix-blend-mode: multiply; }
+  .profile-photo--opaque { display: none; }
+  .profile-photo--transparent { display: block; }
   :root[data-theme="dark"] .portrait { background: #fff; }
-  :root[data-theme="dark"] .profile-photo { mix-blend-mode: normal; }
+  :root[data-theme="dark"] .profile-photo--opaque { display: block; }
+  :root[data-theme="dark"] .profile-photo--transparent { display: none; }
   .portrait-ring, .portrait-tag { display: none; }
   .intro { order: 2; }
   .intro h1 { margin-bottom: 14px; font-size: 32px; }
