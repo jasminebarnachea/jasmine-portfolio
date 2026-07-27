@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ArrowDown01Icon, Cancel01Icon, MenuTwoLineIcon } from "@hugeicons/core-free-icons";
 
 type ThemePreference = "system" | "light" | "dark";
 
@@ -61,9 +63,11 @@ export default function Navigation() {
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
+        <HugeiconsIcon className="theme-control-icon" icon={ArrowDown01Icon} size={13} strokeWidth={1.8} aria-hidden="true" />
       </label>
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-nav">
-        {menuOpen ? "×" : "☰"}
+        <HugeiconsIcon icon={menuOpen ? Cancel01Icon : MenuTwoLineIcon} size={23} strokeWidth={1.7} aria-hidden="true" />
+        <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
       </button>
       <nav id="site-nav" className={`nav ${menuOpen ? "open" : ""}`}>
         <a onClick={closeMenu} href="#credentials">education</a>

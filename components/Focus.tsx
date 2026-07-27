@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Cancel01Icon, ExternalLinkIcon, PlayCircleIcon } from "@hugeicons/core-free-icons";
 import capstoneOne from "../assets/picture/capstone1.jpg";
 import capstoneTwo from "../assets/picture/casptone2.jpg";
 import recipeOne from "../assets/picture/recipe1.jpg";
@@ -71,14 +73,14 @@ export default function Focus() {
             ? <span className="project-placeholder" aria-hidden="true">CB<span>AI</span></span>
             : projectImages[index].map((image, imageIndex) => <a className={`project-image-link image-${imageIndex + 1}`} href={image.src} target="_blank" rel="noreferrer" key={image.src} aria-label={`View ${project.title} app screen ${imageIndex + 1} full size`}><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></a>)}
         </div>
-        <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div><div className="project-actions">{project.video && <button className="project-link project-video-button" type="button" onClick={() => setActiveVideo(project.video!)}>Watch demo ▶</button>}{project.website && <a className="project-link" href={project.website} target="_blank" rel="noreferrer">Visit live site ↗</a>}</div></div>
+        <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div><div className="project-actions">{project.video && <button className="project-link project-video-button icon-link" type="button" onClick={() => setActiveVideo(project.video!)}><HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} aria-hidden="true" />Watch demo</button>}{project.website && <a className="project-link icon-link" href={project.website} target="_blank" rel="noreferrer">Visit live site<HugeiconsIcon icon={ExternalLinkIcon} size={14} strokeWidth={1.8} aria-hidden="true" /></a>}</div></div>
       </article>)}
     </div>
     {activeVideo && <div className="video-modal-backdrop" role="presentation" onMouseDown={(event) => {
       if (event.target === event.currentTarget) setActiveVideo(null);
     }}>
       <div className="video-modal" role="dialog" aria-modal="true" aria-label="PetSit Connect demo video">
-        <button className="video-modal-close" type="button" onClick={() => setActiveVideo(null)} aria-label="Close video">×</button>
+        <button className="video-modal-close" type="button" onClick={() => setActiveVideo(null)} aria-label="Close video"><HugeiconsIcon icon={Cancel01Icon} size={24} strokeWidth={1.7} aria-hidden="true" /></button>
         <video src={activeVideo} controls autoPlay playsInline preload="metadata">Your browser does not support this video.</video>
       </div>
     </div>}

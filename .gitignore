@@ -5,3 +5,4 @@ tsconfig.tsbuildinfo
 .DS_Store
 .env.local
 assets/video/*.mov
+assets/video/*.mp4
