@@ -151,8 +151,8 @@
   .menu-toggle { min-width: 38px; border-left: 1px solid var(--line); }
 
   /* Keep the introduction compact: profile on the left, text on the right. */
-  .hero-grid { grid-template-columns: 114px minmax(0, 1fr); align-items: start; gap: 14px; }
-  .portrait-wrap { display: block; order: 1; height: auto; padding-top: 5px; }
+  .hero-grid { grid-template-columns: 114px minmax(0, 1fr); align-items: start; gap: 12px 14px; }
+  .portrait-wrap { display: block; grid-column: 1; grid-row: 1 / span 2; height: auto; padding-top: 5px; }
   .portrait { width: 110px; height: 110px; background: var(--mobile-surface); transform: none !important; animation: none; }
   .profile-photo--opaque { display: none; }
   .profile-photo--transparent { display: block; }
@@ -160,10 +160,21 @@
   :root[data-theme="dark"] .profile-photo--opaque { display: block; }
   :root[data-theme="dark"] .profile-photo--transparent { display: none; }
   .portrait-ring, .portrait-tag { display: none; }
-  .intro { order: 2; }
-  .intro h1 { margin-bottom: 14px; font-size: 32px; }
-  .intro p { margin-bottom: 14px; font-size: 14px; line-height: 1.5; }
-  .socials { gap: 12px; }
+  .intro { display: contents; }
+  .intro h1 { grid-column: 2; grid-row: 1; align-self: center; margin: 0; font-size: 32px; }
+  .intro p { grid-column: 1 / -1; margin: 0; font-size: 15px; line-height: 1.6; }
+  .intro p:first-of-type { grid-row: 3; }
+  .intro p:nth-of-type(2) { grid-row: 4; }
+  .socials { grid-column: 2; grid-row: 2; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; width: 100%; }
+  .socials a {
+    justify-content: center;
+    min-height: 34px;
+    padding: 7px 2px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    font-size: 9px;
+  }
 
   /* Education comes first, followed by full-width professional experience. */
   .about-education { display: flex; flex-direction: column; }
