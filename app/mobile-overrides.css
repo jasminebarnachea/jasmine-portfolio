@@ -122,6 +122,27 @@
 }
 
 @media (max-width: 650px) {
+  :root,
+  :root[data-theme="dark"] {
+    --ink: #171717;
+    --copy: #646464;
+    --faint: #ababab;
+    --line: #e8e8e8;
+    --paper: #fff;
+  }
+
+  body,
+  .site,
+  .topbar,
+  .hero,
+  .stats,
+  .about-education,
+  .experience-list,
+  .section,
+  .contact {
+    background-color: #fff !important;
+  }
+
   .project-card { border-radius: 15px; }
   .topbar .shell { gap: 12px; }
   .wordmark { display: flex; align-items: center; gap: 9px; font-size: 15px; }
