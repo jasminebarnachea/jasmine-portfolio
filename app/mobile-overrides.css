@@ -14,9 +14,11 @@
   object-position: 50% 50%;
 }
 
-.profile-photo--transparent {
-  display: none;
-}
+.profile-photo--opaque { display: none; }
+.profile-photo--transparent { display: block; }
+:root[data-theme="dark"] .portrait { background: #fff; }
+:root[data-theme="dark"] .profile-photo--opaque { display: block; }
+:root[data-theme="dark"] .profile-photo--transparent { display: none; }
 
 .portrait-ring {
   display: none;
