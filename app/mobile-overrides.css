@@ -65,11 +65,15 @@
 
 .scroll-pop-visible { opacity: 1; transform: none; }
 
+/* Give project cards the same soft geometry as the portfolio's other panels. */
+.project-card { border-radius: 18px; }
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-pop { opacity: 1; transform: none; transition: none; }
 }
 
 @media (max-width: 650px) {
+  .project-card { border-radius: 15px; }
   .topbar .shell { gap: 12px; }
   .wordmark { display: flex; align-items: center; gap: 9px; font-size: 15px; }
   .wordmark-icon { width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; object-fit: cover; }
