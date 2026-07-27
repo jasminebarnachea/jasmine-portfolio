@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 const revealSelector = [
   ".section-head",
+  ".about-education .experience-item",
   ".about-line",
   ".timeline-row",
   ".stack-group",

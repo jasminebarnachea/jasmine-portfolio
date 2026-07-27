@@ -90,13 +90,13 @@
   .intro p { margin-bottom: 14px; font-size: 14px; line-height: 1.5; }
   .socials { gap: 12px; }
 
-  /* Professional experience comes first, followed by full-width education. */
+  /* Education comes first, followed by full-width professional experience. */
   .about-education { display: flex; flex-direction: column; }
   .about-education > .section,
   .about-education > .section:first-child,
   .about-education > .section:last-child { padding: 48px 0 22px; border-left: 0; }
-  .about-education > #about { order: 1; border-top: 1px solid var(--line); }
-  .about-education > #credentials { order: 2; border-top: 1px solid var(--line); }
+  .about-education > #credentials { order: 1; border-top: 1px solid var(--line); }
+  .about-education > #about { order: 2; border-top: 1px solid var(--line); }
   .about-education .section-head { min-height: 0; margin-bottom: 20px; align-items: flex-start; }
   .about-education .section-title { font-size: 11px; line-height: 1.4; }
 
