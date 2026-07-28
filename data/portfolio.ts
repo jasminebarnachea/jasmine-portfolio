@@ -26,7 +26,7 @@ export const projects: Project[] = [
   },
   {
     title: "Cafe Pulse",
-    description: "A modern point-of-sale and business analytics system built for cafés and coffee shops. Cashiers can manage orders, payments, receipts, and customer preferences, while administrators can track sales, staff activity, product performance, and AI-powered business insights from one connected dashboard.",
+    description: "A point-of-sale and analytics system for cafés. It manages orders, payments, receipts, staff activity, product performance, and AI-powered business insights from one dashboard.",
     languages: ["TypeScript", "Groq AI"],
     website: "https://cafe-pulse-advertise.vercel.app",
   },
