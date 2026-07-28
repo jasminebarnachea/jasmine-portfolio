@@ -990,12 +990,11 @@
     transition: width .2s ease, opacity .2s ease, background-color .2s ease;
   }
 
-  .originkit-coverflow-dots button:focus {
-    outline: none;
-  }
-
-  .originkit-coverflow-dots button:focus-visible {
-    box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink);
+  .originkit-coverflow-dots button:focus,
+  .originkit-coverflow-dots button:focus-visible,
+  .originkit-coverflow-dots button:active {
+    outline: 0 !important;
+    box-shadow: none !important;
   }
 
   .originkit-coverflow-dots button.is-active {

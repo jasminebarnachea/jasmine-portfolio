@@ -32,6 +32,7 @@ export default function ClickEffects({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const handleClick = (event: PointerEvent) => {
+      if ((event.target as Element | null)?.closest(".originkit-coverflow-dots")) return;
       const id = `${event.timeStamp}-${event.clientX}-${event.clientY}`;
       const next = Array.from({ length: 8 }, (_, index) => ({
         id: `${id}-${index}`,

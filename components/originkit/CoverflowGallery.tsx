@@ -162,6 +162,7 @@ export default function CoverflowGallery({
         aria-current={index === active ? "true" : undefined}
         onClick={(event) => {
           event.stopPropagation();
+          event.currentTarget.blur();
           if (!lockRef.current && index !== active) setActive(index);
         }}
       />)}
