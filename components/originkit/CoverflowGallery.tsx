@@ -68,7 +68,7 @@ export default function CoverflowGallery({
     aria-roledescription="carousel"
     aria-label="Project screenshots"
     onPointerDown={(event) => {
-      if (event.pointerType === "mouse" && event.button !== 0) return;
+      if (event.pointerType === "mouse") return;
       dragStartRef.current = event.clientX;
       suppressClickRef.current = false;
       setDragging(true);
@@ -150,6 +150,19 @@ export default function CoverflowGallery({
           <i style={{ opacity: index === active ? 0 : 1 - opacity / 100 }} />
         </div>;
       })}
+    </div>
+    <div className="originkit-coverflow-dots" aria-label="Choose project">
+      {slides.map((slide, index) => <button
+        type="button"
+        key={`dot-${slide.title || index}`}
+        className={index === active ? "is-active" : ""}
+        aria-label={`Show project ${index + 1}: ${slide.title || ""}`}
+        aria-current={index === active ? "true" : undefined}
+        onClick={(event) => {
+          event.stopPropagation();
+          if (!lockRef.current && index !== active) setActive(index);
+        }}
+      />)}
     </div>
   </div>;
 }

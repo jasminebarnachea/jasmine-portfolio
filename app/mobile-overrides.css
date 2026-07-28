@@ -498,12 +498,10 @@
   perspective: 1600px;
   overflow: hidden;
   outline: none;
-  cursor: grab;
-  touch-action: pan-y;
   user-select: none;
 }
 
-.originkit-coverflow:active { cursor: grabbing; }
+.originkit-coverflow-dots { display: none; }
 
 .originkit-coverflow-stage {
   position: relative;
@@ -898,7 +896,11 @@
     height: 100%;
     min-width: 0;
     overflow: hidden;
+    cursor: grab;
+    touch-action: pan-y;
   }
+
+  .project-card-coverflow > .originkit-coverflow:active { cursor: grabbing; }
 
   .project-card-coverflow .originkit-coverflow-stage,
   .project-card-coverflow .originkit-coverflow-card {
@@ -961,6 +963,36 @@
   .project-card-coverflow .originkit-coverflow-card:not([aria-current="true"]) {
     opacity: 0 !important;
     pointer-events: none !important;
+  }
+
+  .originkit-coverflow-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    transform: translateX(-50%);
+  }
+
+  .originkit-coverflow-dots button {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--faint);
+    opacity: .45;
+    cursor: pointer;
+    transition: width .2s ease, opacity .2s ease, background-color .2s ease;
+  }
+
+  .originkit-coverflow-dots button.is-active {
+    width: 18px;
+    background: var(--ink);
+    opacity: 1;
   }
 }
 
