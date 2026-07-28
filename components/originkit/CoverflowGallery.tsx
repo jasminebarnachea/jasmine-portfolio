@@ -44,6 +44,8 @@ export default function CoverflowGallery({
   const lockRef = useRef(false);
   const dragStartRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
+  const dragFrameRef = useRef<number | null>(null);
+  const pendingDragRef = useRef(0);
   const count = slides.length;
 
   const step = useCallback((direction: number) => {
@@ -58,6 +60,10 @@ export default function CoverflowGallery({
     const timer = window.setInterval(() => step(1), 2800);
     return () => window.clearInterval(timer);
   }, [autoplay, count, step]);
+
+  useEffect(() => () => {
+    if (dragFrameRef.current !== null) window.cancelAnimationFrame(dragFrameRef.current);
+  }, []);
 
   if (!count) return null;
 
@@ -79,12 +85,22 @@ export default function CoverflowGallery({
       if (dragStartRef.current === null) return;
       const distance = event.clientX - dragStartRef.current;
       if (Math.abs(distance) > 5) suppressClickRef.current = true;
-      setDragOffset(Math.max(-110, Math.min(110, distance)));
+      pendingDragRef.current = Math.max(-110, Math.min(110, distance));
+      if (dragFrameRef.current === null) {
+        dragFrameRef.current = window.requestAnimationFrame(() => {
+          setDragOffset(pendingDragRef.current);
+          dragFrameRef.current = null;
+        });
+      }
     }}
     onPointerUp={(event) => {
       if (dragStartRef.current === null) return;
       const distance = event.clientX - dragStartRef.current;
       dragStartRef.current = null;
+      if (dragFrameRef.current !== null) {
+        window.cancelAnimationFrame(dragFrameRef.current);
+        dragFrameRef.current = null;
+      }
       setDragging(false);
       setDragOffset(0);
       if (Math.abs(distance) >= 42) {
@@ -95,6 +111,10 @@ export default function CoverflowGallery({
     }}
     onPointerCancel={() => {
       dragStartRef.current = null;
+      if (dragFrameRef.current !== null) {
+        window.cancelAnimationFrame(dragFrameRef.current);
+        dragFrameRef.current = null;
+      }
       setDragging(false);
       setDragOffset(0);
     }}

@@ -520,12 +520,18 @@
   cursor: pointer;
   transform-style: preserve-3d;
   transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
   transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .6s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
 }
 
 .originkit-coverflow-card.is-dragging {
   transition: none !important;
   pointer-events: none !important;
+}
+
+.originkit-coverflow-card.is-dragging .project-card--coverflow {
+  pointer-events: none;
 }
 
 .originkit-coverflow-card[aria-current="true"] {
