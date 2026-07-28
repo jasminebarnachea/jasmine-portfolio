@@ -501,7 +501,6 @@
   user-select: none;
 }
 
-.originkit-coverflow-dots,
 .originkit-swipe-hint { display: none; }
 
 .originkit-coverflow-stage {
@@ -966,47 +965,10 @@
     pointer-events: none !important;
   }
 
-  .originkit-coverflow-dots {
-    position: absolute;
-    left: 50%;
-    bottom: 5px;
-    z-index: 30;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    transform: translateX(-50%);
-  }
-
-  .originkit-coverflow-dots button {
-    width: 7px;
-    height: 7px;
-    padding: 0;
-    border: 0;
-    border-radius: 999px;
-    background: var(--faint);
-    opacity: .45;
-    cursor: pointer;
-    transition: width .2s ease, opacity .2s ease, background-color .2s ease;
-  }
-
-  .originkit-coverflow-dots button:focus,
-  .originkit-coverflow-dots button:focus-visible,
-  .originkit-coverflow-dots button:active {
-    outline: 0 !important;
-    box-shadow: none !important;
-  }
-
-  .originkit-coverflow-dots button.is-active {
-    width: 18px;
-    background: var(--ink);
-    opacity: 1;
-  }
-
   .originkit-swipe-hint {
     position: absolute;
     left: 50%;
-    bottom: 27px;
+    bottom: 5px;
     z-index: 31;
     display: flex;
     align-items: center;
@@ -1035,8 +997,8 @@
 }
 
 @keyframes project-swipe-hint {
-  0%, 100% { transform: translateX(-2px); opacity: .55; }
-  50% { transform: translateX(3px); opacity: 1; }
+  0%, 100% { transform: translateX(0); opacity: .55; }
+  50% { transform: translateX(5px); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

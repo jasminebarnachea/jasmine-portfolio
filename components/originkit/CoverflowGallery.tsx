@@ -153,22 +153,8 @@ export default function CoverflowGallery({
         </div>;
       })}
     </div>
-    <div className="originkit-coverflow-dots" aria-label="Choose project">
-      {slides.map((slide, index) => <button
-        type="button"
-        key={`dot-${slide.title || index}`}
-        className={index === active ? "is-active" : ""}
-        aria-label={`Show project ${index + 1}: ${slide.title || ""}`}
-        aria-current={index === active ? "true" : undefined}
-        onClick={(event) => {
-          event.stopPropagation();
-          event.currentTarget.blur();
-          if (!lockRef.current && index !== active) setActive(index);
-        }}
-      />)}
-    </div>
     {!hasSwiped && <div className="originkit-swipe-hint" aria-hidden="true">
-      <span>Swipe to see more</span><i>↔</i>
+      <span>Swipe to see more</span><i>→</i>
     </div>}
   </div>;
 }
