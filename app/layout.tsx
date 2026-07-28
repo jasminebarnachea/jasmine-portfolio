@@ -13,5 +13,24 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  return <html lang="en">
+    <head>
+      <script dangerouslySetInnerHTML={{ __html: `
+        (() => {
+          if (!window.matchMedia("(max-width: 760px)").matches) return;
+          if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+          const reset = () => {
+            const root = document.documentElement;
+            const previous = root.style.scrollBehavior;
+            root.style.scrollBehavior = "auto";
+            window.scrollTo(0, 0);
+            requestAnimationFrame(() => { root.style.scrollBehavior = previous; });
+          };
+          reset();
+          window.addEventListener("pageshow", reset);
+        })();
+      ` }} />
+    </head>
+    <body>{children}</body>
+  </html>;
 }

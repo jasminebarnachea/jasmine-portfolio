@@ -37,23 +37,6 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
-    if (!window.matchMedia("(max-width: 760px)").matches) return;
-    const previousRestoration = history.scrollRestoration;
-    history.scrollRestoration = "manual";
-    const scrollToTop = () => window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: "auto" }));
-    const delayedTop = window.setTimeout(scrollToTop, 120);
-    scrollToTop();
-    window.addEventListener("pageshow", scrollToTop);
-    window.addEventListener("load", scrollToTop);
-    return () => {
-      window.clearTimeout(delayedTop);
-      window.removeEventListener("pageshow", scrollToTop);
-      window.removeEventListener("load", scrollToTop);
-      history.scrollRestoration = previousRestoration;
-    };
-  }, []);
-
-  useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const followSystemTheme = () => {
       if (theme === "system") applyTheme("system");
