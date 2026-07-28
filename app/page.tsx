@@ -8,9 +8,11 @@ import JasChat from "../components/JasChat";
 import Navigation from "../components/Navigation";
 import ScrollReveal from "../components/ScrollReveal";
 import Stack from "../components/Stack";
+import ClickEffects from "../components/originkit/ClickEffects";
 
 export default function Home() {
   return <div className="site">
+    <ClickEffects />
     <Navigation />
     <ScrollReveal />
     <main id="top" className="shell"><Hero /><div className="about-education"><Credentials /><About /></div><Focus /><Stack /><Certifications /></main>

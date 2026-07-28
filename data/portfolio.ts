@@ -32,13 +32,13 @@ export const projects: Project[] = [
   },
   {
     title: "LGU-DigiVault",
-    description: "A modern digital records and AI-powered archiving system built for local government units. Administrators can scan, upload, classify, secure, track, and share official documents, while constituents can access authorized public or privately shared records, receive release notifications, download files, and communicate directly with LGU offices—all from one centralized platform.",
+    description: "A digital records and AI-powered archiving system for local government units. Administrators can organize, secure, track, and share official documents, while constituents can access authorized records and receive release notifications.",
     languages: ["JavaScript", "Grok AI"],
     website: "https://lgu-digi-vault.vercel.app",
   },
   {
     title: "CareerBridge AI",
-    description: "A modern AI-powered resume analysis and school recruitment system. Applicants upload a PDF or DOCX resume, which the system analyzes to extract their skills, education, experience, and qualifications. It then compares the resume with every available position, generates match scores, identifies missing skills, and recommends the most suitable job or office. Administrators can review ranked applicants, manage applications and interviews, and monitor recruitment insights from one connected dashboard.",
+    description: "An AI-powered resume analysis and recruitment system that matches applicants with suitable positions. It generates match scores, identifies missing skills, recommends roles, and helps administrators manage applications and interviews.",
     languages: ["TypeScript", "Grok AI"],
     website: "https://career-bridge-ai-mauve.vercel.app",
   },

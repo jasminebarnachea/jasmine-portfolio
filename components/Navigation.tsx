@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowDown01Icon, Cancel01Icon, MenuTwoLineIcon } from "@hugeicons/core-free-icons";
+import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
 
 type ThemePreference = "system" | "light" | "dark";
 
@@ -12,10 +12,8 @@ const applyTheme = (preference: ThemePreference) => {
 };
 
 export default function Navigation() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState<ThemePreference>("system");
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const closeMenu = () => setMenuOpen(false);
 
   const updateTheme = (preference: ThemePreference) => {
     const root = document.documentElement;
@@ -65,15 +63,11 @@ export default function Navigation() {
         </select>
         <HugeiconsIcon className="theme-control-icon" icon={ArrowDown01Icon} size={13} strokeWidth={1.8} aria-hidden="true" />
       </label>
-      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="site-nav">
-        <HugeiconsIcon icon={menuOpen ? Cancel01Icon : MenuTwoLineIcon} size={23} strokeWidth={1.7} aria-hidden="true" />
-        <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
-      </button>
-      <nav id="site-nav" className={`nav ${menuOpen ? "open" : ""}`}>
-        <a onClick={closeMenu} href="#credentials">education</a>
-        <a onClick={closeMenu} href="#about">experience</a>
-        <a onClick={closeMenu} href="#focus">projects</a>
-        <a onClick={closeMenu} href="#contact">contact</a>
+      <nav id="site-nav" className="nav">
+        <a href="#credentials">education</a>
+        <a href="#about">experience</a>
+        <a href="#focus">projects</a>
+        <a href="#contact">contact</a>
       </nav>
     </div>
   </header>;

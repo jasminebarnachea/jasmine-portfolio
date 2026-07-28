@@ -18,6 +18,8 @@ const iconClass = (tool: string) => `stack-icon stack-icon--${tool.toLowerCase()
 export default function Stack() {
   return <section className="section stack-section">
     <div className="section-head"><span className="section-title">Stack</span></div>
-    <div className="stack-groups">{stackGroups.map((group) => <div className="stack-group" key={group.name}><h3>{group.name}</h3><div className="chips-large">{group.tools.map((tool) => <span className="stack-chip" key={tool}><span className={iconClass(tool)} aria-hidden="true"><HugeiconsIcon icon={toolIcons[tool] || SourceCodeSquareIcon} size={14} strokeWidth={1.8} /></span>{tool}</span>)}</div></div>)}</div>
+    <div className="stack-groups">{stackGroups.map((group) => <div className="stack-group" key={group.name}><h3>{group.name}</h3><div className="chips-large">{group.tools.map((tool) => {
+      return <span className="stack-chip" key={tool}><span className={iconClass(tool)} aria-hidden="true"><HugeiconsIcon icon={toolIcons[tool] || SourceCodeSquareIcon} size={14} strokeWidth={1.8} /></span>{tool}</span>;
+    })}</div></div>)}</div>
   </section>;
 }

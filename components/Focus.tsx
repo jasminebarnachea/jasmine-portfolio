@@ -21,6 +21,7 @@ import careerBridgeOne from "../assets/picture/cb.png";
 import careerBridgeTwo from "../assets/picture/cb1.png";
 import careerBridgeThree from "../assets/picture/cb2.png";
 import { projects } from "../data/portfolio";
+import CoverflowGallery from "./originkit/CoverflowGallery";
 
 const projectImages = [
   [recipeOne, recipeTwo],
@@ -66,15 +67,35 @@ export default function Focus() {
 
   return <section id="focus" className="section" ref={sectionRef}>
     <div className="section-head"><span className="section-title">03 — projects</span></div>
-    <div className="project-grid">
-      {projects.map((project, index) => <article className="project-card scroll-reveal" key={project.title}>
-        <div className={`project-gallery ${projectImages[index].length === 3 ? "project-gallery--three" : ""} ${projectImages[index].length === 0 ? "project-gallery--empty" : ""}`}>
-          {projectImages[index].length === 0
-            ? <span className="project-placeholder" aria-hidden="true">CB<span>AI</span></span>
-            : projectImages[index].map((image, imageIndex) => <a className={`project-image-link image-${imageIndex + 1}`} href={image.src} target="_blank" rel="noreferrer" key={image.src} aria-label={`View ${project.title} app screen ${imageIndex + 1} full size`}><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></a>)}
-        </div>
-        <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div><div className="project-actions">{project.video && <button className="project-link project-video-button icon-link" type="button" onClick={() => setActiveVideo(project.video!)}><HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} aria-hidden="true" />Watch demo</button>}{project.website && <a className="project-link icon-link" href={project.website} target="_blank" rel="noreferrer">Visit live site<HugeiconsIcon icon={ExternalLinkIcon} size={14} strokeWidth={1.8} aria-hidden="true" /></a>}</div></div>
-      </article>)}
+    <div className="project-card-coverflow">
+      <CoverflowGallery
+        autoplay={false}
+        cardWidth={360}
+        cardHeight={540}
+        radius={22}
+        gap={5}
+        tilt={8}
+        sideTilt={4}
+        opacity={48}
+        slides={projects.map((project, index) => ({
+          image: { src: projectImages[index][0]?.src || "", alt: project.title },
+          title: project.title,
+        }))}
+        renderSlide={(_, index, isActive) => {
+          const project = projects[index];
+          return <article className={`project-card project-card--coverflow ${isActive ? "is-front" : ""}`}>
+            <div className={`project-gallery ${projectImages[index].length === 3 ? "project-gallery--three" : ""} ${projectImages[index].length === 0 ? "project-gallery--empty" : ""}`}>
+              {projectImages[index].length === 0
+                ? <span className="project-placeholder" aria-hidden="true">CB<span>AI</span></span>
+                : projectImages[index].map((image, imageIndex) => <div
+                  className={`project-image-frame image-${imageIndex + 1}`}
+                  key={image.src}
+                ><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></div>)}
+            </div>
+            <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div><div className="project-actions">{project.video && <button className="project-link project-video-button icon-link" type="button" onClick={() => isActive && setActiveVideo(project.video!)}><HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} aria-hidden="true" />Watch demo</button>}{project.website && <a className="project-link project-live-link icon-link" href={project.website} target="_blank" rel="noreferrer" onClick={(event) => { if (!isActive) event.preventDefault(); }}>Visit live site<HugeiconsIcon icon={ExternalLinkIcon} size={14} strokeWidth={1.8} aria-hidden="true" /></a>}</div></div>
+          </article>;
+        }}
+      />
     </div>
     {activeVideo && <div className="video-modal-backdrop" role="presentation" onMouseDown={(event) => {
       if (event.target === event.currentTarget) setActiveVideo(null);

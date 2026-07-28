@@ -361,3 +361,536 @@
   0%, 100% { transform: rotate(0deg) scale(1); opacity: .8; }
   50% { transform: rotate(90deg) scale(1.25); opacity: 1; }
 }
+
+/* OriginKit-inspired edge particle field. It stays decorative and never blocks the page. */
+.svg-particles {
+  position: fixed;
+  inset: 92px 0 0;
+  z-index: 1;
+  width: 100%;
+  height: calc(100dvh - 92px);
+  pointer-events: none;
+}
+
+.site > :not(.svg-particles):not(.originkit-click-effects) { position: relative; z-index: 2; }
+
+/* Global click burst, mounted once at the page root. */
+.click-burst {
+  position: fixed;
+  z-index: 9999;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  animation: click-burst-life .52s ease-out forwards;
+}
+
+.click-burst i {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  width: 4px;
+  height: 4px;
+  background: var(--ink);
+  box-shadow: 0 0 0 1px var(--paper);
+  animation: click-burst-particle .52s cubic-bezier(.2, .75, .25, 1) forwards;
+}
+
+@keyframes click-burst-life {
+  to { opacity: 0; }
+}
+
+@keyframes click-burst-particle {
+  to { transform: translate(var(--burst-x), var(--burst-y)) rotate(90deg); opacity: 0; }
+}
+
+/* Roomier expandable sidebar menu. */
+.nav {
+  min-width: 260px;
+  padding: 14px;
+  border-radius: 16px;
+  transform-origin: top right;
+}
+
+.nav.open { animation: sidebar-expand .2s ease-out both; }
+.nav a { padding: 14px 16px; border-radius: 10px; font-size: 14px; }
+
+@keyframes sidebar-expand {
+  from { opacity: 0; transform: translateY(-8px) scale(.92); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Explicit high-contrast text colors for both selected themes. */
+:root[data-theme="light"] { --ink: #000; --copy: #000; --faint: #000; }
+:root[data-theme="dark"] { --ink: #fff; --copy: #fff; --faint: #fff; }
+
+:root[data-theme="light"] body,
+:root[data-theme="light"] button,
+:root[data-theme="light"] input,
+:root[data-theme="light"] select,
+:root[data-theme="light"] a,
+:root[data-theme="light"] p,
+:root[data-theme="light"] span,
+:root[data-theme="light"] h1,
+:root[data-theme="light"] h2,
+:root[data-theme="light"] h3 { color: #000; }
+
+:root[data-theme="dark"] body,
+:root[data-theme="dark"] button,
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] a,
+:root[data-theme="dark"] p,
+:root[data-theme="dark"] span,
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] h2,
+:root[data-theme="dark"] h3 { color: #fff; }
+
+:root[data-theme="light"] .jas-chat-launcher,
+:root[data-theme="light"] .jas-chat-message--user,
+:root[data-theme="light"] .jas-chat-form button,
+:root[data-theme="light"] .resume-download,
+:root[data-theme="light"] .email-modal-address button { color: #fff; }
+
+:root[data-theme="dark"] .jas-chat-launcher,
+:root[data-theme="dark"] .jas-chat-message--user,
+:root[data-theme="dark"] .jas-chat-form button,
+:root[data-theme="dark"] .resume-download { color: #171717; }
+
+@media (max-width: 650px) {
+  .svg-particles { inset: 70px 0 0; height: calc(100dvh - 70px); opacity: .7; }
+  .nav { width: min(300px, calc(100vw - 30px)); min-width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav.open { animation: none; }
+  .click-burst { display: none; }
+}
+
+/* OriginKit Click Effects is a single viewport overlay. */
+.originkit-click-effects {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: visible;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.originkit-click-effects i {
+  position: absolute;
+  display: block;
+  background: currentColor;
+  box-shadow: 0 0 0 1px var(--paper);
+  pointer-events: none;
+}
+
+/* OriginKit Coverflow Gallery inside each project showcase. */
+.project-gallery--coverflow { perspective: 1600px; }
+.originkit-coverflow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1600px;
+  overflow: hidden;
+  outline: none;
+}
+
+.originkit-coverflow-stage {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.originkit-coverflow-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #1a1a1a;
+  box-shadow: 0 16px 25px #0003;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .6s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
+}
+
+.originkit-coverflow-card[aria-current="true"] {
+  cursor: default;
+  box-shadow: 0 24px 42px #0005;
+}
+
+.originkit-coverflow-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+}
+
+.originkit-coverflow-card > i {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: #000;
+  pointer-events: none;
+  transition: opacity .6s cubic-bezier(.22,1,.36,1);
+}
+
+.originkit-coverflow-card > span {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1;
+  color: #fff !important;
+  font: 500 12px var(--mono);
+  text-align: left;
+  text-shadow: 0 2px 8px #000;
+}
+
+@media (max-width: 650px) {
+  .originkit-coverflow-stage,
+  .originkit-coverflow-card {
+    width: 112px !important;
+    height: 164px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .originkit-coverflow-card { transition: none; }
+}
+
+/* Final navigation: visible links only, no hamburger/dropdown treatment. */
+.topbar .shell { justify-content: flex-start; gap: 24px; }
+.wordmark { margin-right: auto; }
+.menu-toggle { display: none !important; }
+.nav,
+.nav.open {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  width: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  animation: none;
+}
+
+.nav a {
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* Screenshot-matched project cards: one wide card and a square coverflow image. */
+.project-grid { grid-template-columns: 1fr !important; gap: 34px !important; }
+.project-card { border-radius: 34px; }
+.project-gallery--coverflow {
+  height: 470px !important;
+  background: linear-gradient(135deg, #fafafa, #f1f1f1);
+}
+
+.project-details {
+  min-height: 300px;
+  padding: 38px 34px !important;
+  grid-template-columns: .9fr 1.3fr !important;
+  column-gap: 42px;
+  align-items: start;
+}
+
+.project-details h3 { font-size: 30px !important; }
+.project-details p { font-size: 17px !important; line-height: 1.55 !important; }
+.project-details .chips,
+.project-actions { grid-column: 2; }
+
+.originkit-coverflow-card img { object-fit: cover; }
+.originkit-coverflow-card:not([aria-current="true"]) { cursor: pointer; }
+.originkit-coverflow-card:not([aria-current="true"]):hover {
+  box-shadow: 0 24px 42px #0005;
+}
+
+/* Click Effects follows the selected portfolio theme exactly. */
+:root { --click-effect-color: #000; }
+:root[data-theme="light"] { --click-effect-color: #000; }
+:root[data-theme="dark"] { --click-effect-color: #fff; }
+.originkit-click-effects { color: var(--click-effect-color); }
+.originkit-click-effects i {
+  min-width: 5px;
+  min-height: 5px;
+  background-color: var(--click-effect-color) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--click-effect-color), transparent 45%);
+}
+
+@media (max-width: 760px) {
+  .topbar { height: auto; min-height: 70px; }
+  .topbar .shell { min-height: 70px; flex-wrap: wrap; gap: 8px 12px; padding: 10px 0; }
+  .wordmark { width: auto; margin-right: auto; }
+  .theme-control { order: 2; }
+  .nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+  .nav a { flex: 1; padding: 8px 4px; text-align: center; font-size: 9px; }
+  .svg-particles { inset: 108px 0 0; height: calc(100dvh - 108px); }
+
+  .project-card { border-radius: 24px; }
+  .project-gallery--coverflow { height: 270px !important; }
+  .originkit-coverflow-stage,
+  .originkit-coverflow-card {
+    width: 210px !important;
+    height: 210px !important;
+  }
+  .project-details {
+    min-height: 0;
+    padding: 26px 22px !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .project-details h3 { font-size: 25px !important; }
+  .project-details p { margin: 0 !important; font-size: 15px !important; }
+  .project-details .chips,
+  .project-actions { grid-column: 1; }
+}
+
+/* The complete project cards—not their screenshots—are the Coverflow slides. */
+.project-card-coverflow {
+  width: 100%;
+  height: 590px;
+  position: relative;
+}
+
+.project-card-coverflow > .originkit-coverflow {
+  overflow: visible;
+}
+
+.project-card-coverflow .originkit-coverflow-card {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.project-card--coverflow {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 220px 1fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--paper);
+  box-shadow: 0 20px 50px #0002;
+  transform: none !important;
+}
+
+.project-card--coverflow:hover {
+  transform: none !important;
+}
+
+.project-card--coverflow .project-gallery {
+  height: 220px !important;
+}
+
+.project-card--coverflow .project-details {
+  min-height: 0;
+  height: 100%;
+}
+
+.project-card-coverflow .originkit-coverflow-card > i {
+  z-index: 20;
+  border-radius: 22px;
+}
+
+.project-card-coverflow .originkit-coverflow-card[aria-current="true"] .project-card--coverflow {
+  box-shadow: 0 28px 65px #0003;
+}
+
+@media (max-width: 760px) {
+  .project-card-coverflow { height: 565px; }
+  .project-card-coverflow .originkit-coverflow-stage,
+  .project-card-coverflow .originkit-coverflow-card {
+    width: min(280px, calc(100vw - 46px)) !important;
+    height: 520px !important;
+  }
+  .project-card--coverflow {
+    grid-template-rows: 185px 1fr;
+    border-radius: 18px;
+  }
+  .project-card--coverflow .project-gallery { height: 185px !important; }
+  .project-card-coverflow .originkit-coverflow-card > i { border-radius: 18px; }
+}
+
+.project-card--coverflow .project-details {
+  padding: 18px !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.project-card--coverflow .project-details h3 { margin-top: 5px !important; font-size: 21px !important; }
+.project-card--coverflow .project-details p {
+  margin: 12px 0 !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+.project-card--coverflow .project-number { font-size: 9px !important; }
+.project-card--coverflow .chips { justify-content: center; margin: 0 0 11px !important; gap: 5px; }
+.project-card--coverflow .chip { padding: 5px 7px; font-size: 9px; }
+.project-card--coverflow .project-actions { justify-content: center; gap: 9px 14px; margin-top: 0; padding-top: 0; }
+.project-card--coverflow .project-link { font-size: 10px; }
+.project-card--coverflow .project-live-link { display: inline-flex !important; visibility: visible; opacity: 1; }
+
+.project-card--coverflow .project-gallery {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+}
+
+.project-card--coverflow .project-image-frame,
+.project-card--coverflow .project-gallery--three .project-image-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(50% - 5px);
+  height: auto;
+  max-height: 100%;
+  transform: none !important;
+  cursor: default;
+}
+
+.project-card--coverflow .project-gallery--three .project-image-frame {
+  width: calc(50% - 5px);
+  height: calc(50% - 4px);
+}
+
+.project-card--coverflow .project-gallery--three {
+  flex-wrap: wrap;
+}
+
+.project-card--coverflow .project-gallery--three .project-image-frame:nth-child(3) {
+  width: calc(50% - 5px);
+  margin-inline: 25%;
+}
+
+.project-card--coverflow .project-image,
+.project-card--coverflow .project-gallery--three .project-image {
+  position: static;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 198px;
+  object-fit: contain;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: none;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.project-card--coverflow:hover .project-image,
+.project-card--coverflow:hover .image-1,
+.project-card--coverflow:hover .image-2,
+.project-card--coverflow:hover .image-3 {
+  transform: none !important;
+  animation: none !important;
+}
+
+.project-card--coverflow .project-image,
+.project-card--coverflow .project-image-frame,
+.project-card--coverflow .project-image-frame *,
+.project-card--coverflow .project-image-frame:hover *,
+.project-card--coverflow .project-image-frame:active * {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.project-card--coverflow .project-image-frame:hover,
+.project-card--coverflow .project-image-frame:focus,
+.project-card--coverflow .project-image-frame:active {
+  transform: none !important;
+  cursor: default;
+}
+
+/* Override every legacy layered-image hover selector with higher specificity. */
+.project-card--coverflow:hover .project-gallery .project-image-frame.image-1,
+.project-card--coverflow:hover .project-gallery .project-image-frame.image-2,
+.project-card--coverflow:hover .project-gallery .project-image-frame.image-3,
+.project-card--coverflow:focus-within .project-gallery .project-image-frame.image-1,
+.project-card--coverflow:focus-within .project-gallery .project-image-frame.image-2,
+.project-card--coverflow:focus-within .project-gallery .project-image-frame.image-3,
+.project-card--coverflow:active .project-gallery .project-image-frame.image-1,
+.project-card--coverflow:active .project-gallery .project-image-frame.image-2,
+.project-card--coverflow:active .project-gallery .project-image-frame.image-3,
+.project-card--coverflow:hover .project-gallery .project-image,
+.project-card--coverflow:focus-within .project-gallery .project-image,
+.project-card--coverflow:active .project-gallery .project-image {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.project-card--coverflow .project-actions,
+.project-card--coverflow .project-live-link {
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 760px) {
+  .project-card--coverflow .project-gallery {
+    gap: 5px;
+    padding: 8px;
+  }
+  .project-card--coverflow .project-image {
+    max-height: 165px;
+  }
+}
+
+/* Stack labels remain readable on their corresponding theme surface. */
+:root[data-theme="dark"] .stack-chip {
+  border-color: var(--line);
+  background: #202020;
+  color: #fff !important;
+}
+
+:root[data-theme="dark"] .stack-group h3,
+:root[data-theme="dark"] .stack-chip {
+  color: #fff !important;
+}
+
+.stack-icon--expo-go {
+  border: 1px solid #555;
+  background: #111 !important;
+  color: #fff !important;
+}
+
+:root[data-theme="dark"] .stack-icon--expo-go {
+  border-color: #ddd;
+  background: #fff !important;
+  color: #111 !important;
+}
