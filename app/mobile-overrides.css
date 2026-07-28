@@ -975,8 +975,10 @@
 
   /* Mobile uses swipe navigation, so remove cropped back-card previews. */
   .project-card-coverflow .originkit-coverflow-card:not([aria-current="true"]) {
+    display: none !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    box-shadow: none !important;
   }
 
   .originkit-swipe-hint {
