@@ -909,6 +909,11 @@
     height: 460px !important;
   }
 
+  .project-card-coverflow .originkit-coverflow-stage {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .project-card--coverflow {
     grid-template-rows: 155px 1fr;
     border-radius: 18px;
@@ -969,7 +974,7 @@
   .originkit-swipe-hint {
     position: absolute;
     left: 50%;
-    bottom: 7px;
+    bottom: 0;
     z-index: 31;
     display: flex;
     align-items: center;
@@ -994,6 +999,21 @@
     color: inherit;
     font: 13px/1 var(--sans);
     animation: project-swipe-hint 1.25s ease-in-out infinite;
+  }
+}
+
+/* Keep the chatbot launcher pinned to the right while the page scrolls. */
+.site > .jas-chat {
+  position: fixed !important;
+  right: 22px;
+  bottom: 22px;
+  z-index: 40;
+}
+
+@media (max-width: 650px) {
+  .site > .jas-chat {
+    right: 15px;
+    bottom: 15px;
   }
 }
 
