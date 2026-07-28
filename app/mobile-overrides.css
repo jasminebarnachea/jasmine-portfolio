@@ -47,6 +47,15 @@
 .icon-link--center { justify-content: center; }
 .icon-button-label { justify-content: center; }
 .email-modal-close, .video-modal-close, .jas-chat-close { display: inline-grid; place-items: center; }
+.resume-modal-close,
+:root[data-theme="light"] .resume-modal-close,
+:root[data-theme="dark"] .resume-modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #171717;
+  color: #fff !important;
+}
 .contact-socials { display: inline-flex; align-items: center; gap: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 

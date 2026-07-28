@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, Copy01Icon, Download02Icon, File01Icon, Github01Icon, Mail02Icon } from "@hugeicons/core-free-icons";
 import profilePhoto from "../assets/picture/jasmineicon.png";
@@ -12,6 +12,15 @@ export default function Hero() {
   const [emailOpen, setEmailOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
   const email = "barnacheajassy@gmail.com";
+
+  useEffect(() => {
+    if (!resumeOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setResumeOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [resumeOpen]);
 
   const copyEmail = async () => {
     await navigator.clipboard?.writeText(email);
@@ -45,7 +54,7 @@ export default function Hero() {
     </div>}
     {resumeOpen && <div className="resume-modal-backdrop" role="presentation" onClick={() => setResumeOpen(false)}>
       <div className="resume-modal" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title" onClick={(event) => event.stopPropagation()}>
-        <button className="email-modal-close" type="button" aria-label="Close resume preview" onClick={() => setResumeOpen(false)}><HugeiconsIcon icon={Cancel01Icon} size={23} strokeWidth={1.7} aria-hidden="true" /></button>
+        <button className="email-modal-close resume-modal-close" type="button" aria-label="Close resume preview" onClick={() => setResumeOpen(false)}><HugeiconsIcon icon={Cancel01Icon} size={23} strokeWidth={1.7} aria-hidden="true" /></button>
         <div className="resume-modal-head"><div><span className="section-title">Resume</span><h2 id="resume-modal-title">Jasmine Barnachea</h2></div><a className="resume-download icon-link" href="/Jasmine-Barnachea-Resume.pdf" download><HugeiconsIcon icon={Download02Icon} size={15} strokeWidth={1.8} aria-hidden="true" />Download PDF</a></div>
         <div className="resume-preview"><Image src={resumeImage} alt="Jasmine Barnachea resume" /></div>
       </div>
