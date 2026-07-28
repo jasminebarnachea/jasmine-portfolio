@@ -18,7 +18,7 @@ const certificateImages = {
 
 export default function Certifications() {
   return <section className="section">
-    <div className="section-head"><span className="section-title">04 — certifications</span></div>
+    <div className="section-head"><span className="section-title">05 — certifications</span></div>
     <div className="cert-grid">{certifications.map((cert, index) => <article className="cert-card" key={cert.title}>
       <a className="cert-image-link" href={certificateImages[cert.image as keyof typeof certificateImages].src} target="_blank" rel="noreferrer" aria-label={`View ${cert.title} certificate full size`}>
         <Image className="cert-image" src={certificateImages[cert.image as keyof typeof certificateImages]} alt={`${cert.title} certificate`} />
