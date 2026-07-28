@@ -887,8 +887,8 @@
 
   .project-card-coverflow {
     width: 100%;
-    height: 520px;
-    margin-top: 28px;
+    height: 480px;
+    margin-top: 14px;
     overflow: hidden;
   }
 
@@ -906,8 +906,8 @@
 
   .project-card-coverflow .originkit-coverflow-stage,
   .project-card-coverflow .originkit-coverflow-card {
-    width: min(250px, calc(100vw - 70px)) !important;
-    height: 460px !important;
+    width: min(240px, calc(100vw - 70px)) !important;
+    height: 430px !important;
   }
 
   .project-card-coverflow .originkit-coverflow-stage {
@@ -916,18 +916,19 @@
   }
 
   .project-card--coverflow {
-    grid-template-rows: 155px 1fr;
+    grid-template-rows: 145px 1fr;
     border-radius: 18px;
   }
 
   .project-card--coverflow .project-gallery {
-    height: 155px !important;
+    height: 145px !important;
     padding: 7px;
   }
 
   .project-card--coverflow .project-details {
     min-height: 0;
     padding: 14px !important;
+    justify-content: center;
   }
 
   .project-card--coverflow .project-details h3 {
@@ -1030,7 +1031,7 @@
 @media (max-width: 360px) {
   .project-card-coverflow .originkit-coverflow-stage,
   .project-card-coverflow .originkit-coverflow-card {
-    width: min(235px, calc(100vw - 54px)) !important;
+    width: min(225px, calc(100vw - 54px)) !important;
   }
 }
 
