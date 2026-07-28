@@ -34,7 +34,15 @@ const projectImages = [
 
 export default function Focus() {
   const sectionRef = useRef<HTMLElement>(null);
+  const lastProjectActionRef = useRef<{ key: string; time: number } | null>(null);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  const isDuplicateProjectAction = (key: string) => {
+    const now = Date.now();
+    const previous = lastProjectActionRef.current;
+    lastProjectActionRef.current = { key, time: now };
+    return previous?.key === key && now - previous.time < 1000;
+  };
 
   useEffect(() => {
     const cards = sectionRef.current?.querySelectorAll<HTMLElement>(".scroll-reveal");
@@ -92,7 +100,14 @@ export default function Focus() {
                   key={image.src}
                 ><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></div>)}
             </div>
-            <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div><div className="project-actions">{project.video && <button className="project-link project-video-button icon-link" type="button" onPointerDown={(event) => event.stopPropagation()} onClick={(event) => { event.stopPropagation(); setActiveVideo(project.video!); }}><HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} aria-hidden="true" />Watch demo</button>}{project.website && <a className="project-link project-live-link icon-link" href={project.website} target="_blank" rel="noreferrer" onPointerDown={(event) => event.stopPropagation()} onClick={(event) => event.stopPropagation()}>Visit live site<HugeiconsIcon icon={ExternalLinkIcon} size={14} strokeWidth={1.8} aria-hidden="true" /></a>}</div></div>
+            <div className="project-details"><div><span className="project-number">0{index + 1}</span><h3>{project.title}</h3></div><p>{project.description}</p><div className="chips">{project.languages.map((language) => <span className="chip" key={language}>{language}</span>)}</div><div className="project-actions">{project.video && <button className="project-link project-video-button icon-link" type="button" onPointerDown={(event) => event.stopPropagation()} onPointerUp={(event) => event.stopPropagation()} onClick={(event) => {
+              event.stopPropagation();
+              if (isDuplicateProjectAction(`video-${index}`)) return;
+              setActiveVideo(project.video!);
+            }}><HugeiconsIcon icon={PlayCircleIcon} size={15} strokeWidth={1.8} aria-hidden="true" />Watch demo</button>}{project.website && <a className="project-link project-live-link icon-link" href={project.website} target="_blank" rel="noreferrer" onPointerDown={(event) => event.stopPropagation()} onPointerUp={(event) => event.stopPropagation()} onClick={(event) => {
+              event.stopPropagation();
+              if (isDuplicateProjectAction(`website-${index}`)) event.preventDefault();
+            }}>Visit live site<HugeiconsIcon icon={ExternalLinkIcon} size={14} strokeWidth={1.8} aria-hidden="true" /></a>}</div></div>
           </article>;
         }}
       />
@@ -102,7 +117,7 @@ export default function Focus() {
     }}>
       <div className="video-modal" role="dialog" aria-modal="true" aria-label="PetSit Connect demo video">
         <button className="video-modal-close" type="button" onClick={() => setActiveVideo(null)} aria-label="Close video"><HugeiconsIcon icon={Cancel01Icon} size={24} strokeWidth={1.7} aria-hidden="true" /></button>
-        <video src={activeVideo} controls autoPlay playsInline preload="metadata">Your browser does not support this video.</video>
+        <video key={activeVideo} src={activeVideo} controls autoPlay playsInline preload="auto">Your browser does not support this video.</video>
       </div>
     </div>}
   </section>;
