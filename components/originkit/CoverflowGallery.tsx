@@ -42,20 +42,25 @@ export default function CoverflowGallery({
   const [dragging, setDragging] = useState(false);
   const [hasSwiped, setHasSwiped] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState<"next" | "previous" | null>(null);
+  const [exitingIndex, setExitingIndex] = useState<number | null>(null);
   const lockRef = useRef(false);
   const dragStartRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
   const dragFrameRef = useRef<number | null>(null);
   const pendingDragRef = useRef(0);
+  const exitTimerRef = useRef<number | null>(null);
   const count = slides.length;
 
   const step = useCallback((direction: number) => {
     if (count < 2 || lockRef.current) return;
     lockRef.current = true;
     setSwipeDirection(direction > 0 ? "next" : "previous");
+    setExitingIndex(active);
     setActive((current) => (current + direction + count) % count);
+    if (exitTimerRef.current !== null) window.clearTimeout(exitTimerRef.current);
+    exitTimerRef.current = window.setTimeout(() => setExitingIndex(null), 430);
     window.setTimeout(() => { lockRef.current = false; }, 620);
-  }, [count]);
+  }, [active, count]);
 
   useEffect(() => {
     if (!autoplay || count < 2) return;
@@ -65,6 +70,7 @@ export default function CoverflowGallery({
 
   useEffect(() => () => {
     if (dragFrameRef.current !== null) window.cancelAnimationFrame(dragFrameRef.current);
+    if (exitTimerRef.current !== null) window.clearTimeout(exitTimerRef.current);
   }, []);
 
   if (!count) return null;
@@ -151,12 +157,16 @@ export default function CoverflowGallery({
             if (!suppressClickRef.current && !lockRef.current && index !== active) {
               lockRef.current = true;
               setSwipeDirection(index > active ? "next" : "previous");
+              setExitingIndex(active);
               setActive(index);
+              if (exitTimerRef.current !== null) window.clearTimeout(exitTimerRef.current);
+              exitTimerRef.current = window.setTimeout(() => setExitingIndex(null), 430);
               window.setTimeout(() => { lockRef.current = false; }, 620);
             }
           }}
           aria-label={`Show ${slide.image.alt || slide.title || `image ${index + 1}`}`}
           aria-current={index === active}
+          data-exiting={index === exitingIndex || undefined}
           role={index === active ? undefined : "button"}
           tabIndex={index === active ? -1 : 0}
           style={{

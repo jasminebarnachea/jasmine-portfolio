@@ -930,6 +930,7 @@
   .project-card--coverflow {
     grid-template-rows: 145px 1fr;
     border-radius: 18px;
+    box-shadow: none !important;
   }
 
   .project-card--coverflow .project-gallery {
@@ -985,10 +986,6 @@
     box-shadow: none !important;
   }
 
-  .project-card-coverflow .originkit-coverflow-card[aria-current="true"] .project-card--coverflow {
-    box-shadow: 0 20px 34px rgb(0 0 0 / 34%) !important;
-  }
-
   .project-card-coverflow > .originkit-coverflow[data-swipe-direction="next"]
     .originkit-coverflow-card[aria-current="true"] {
     animation: mobile-project-swipe-next .42s cubic-bezier(.22, 1, .36, 1);
@@ -999,8 +996,24 @@
     animation: mobile-project-swipe-previous .42s cubic-bezier(.22, 1, .36, 1);
   }
 
+  .project-card-coverflow > .originkit-coverflow[data-swipe-direction="next"]
+    .originkit-coverflow-card[data-exiting="true"] {
+    display: block !important;
+    pointer-events: none !important;
+    box-shadow: none !important;
+    animation: mobile-project-swipe-out-next .42s cubic-bezier(.55, 0, 1, .45) forwards;
+  }
+
+  .project-card-coverflow > .originkit-coverflow[data-swipe-direction="previous"]
+    .originkit-coverflow-card[data-exiting="true"] {
+    display: block !important;
+    pointer-events: none !important;
+    box-shadow: none !important;
+    animation: mobile-project-swipe-out-previous .42s cubic-bezier(.55, 0, 1, .45) forwards;
+  }
+
   /* Mobile uses swipe navigation, so remove cropped back-card previews. */
-  .project-card-coverflow .originkit-coverflow-card:not([aria-current="true"]) {
+  .project-card-coverflow .originkit-coverflow-card:not([aria-current="true"]):not([data-exiting="true"]) {
     display: none !important;
     opacity: 0 !important;
     pointer-events: none !important;
@@ -1046,6 +1059,16 @@
 @keyframes mobile-project-swipe-previous {
   from { margin-left: -32px; opacity: .35; }
   to { margin-left: 0; opacity: 1; }
+}
+
+@keyframes mobile-project-swipe-out-next {
+  from { translate: 0; opacity: 1; }
+  to { translate: -72%; opacity: 0; }
+}
+
+@keyframes mobile-project-swipe-out-previous {
+  from { translate: 0; opacity: 1; }
+  to { translate: 72%; opacity: 0; }
 }
 
 /* Keep the chatbot launcher pinned to the right while the page scrolls. */
