@@ -40,6 +40,7 @@ export default function CoverflowGallery({
   const [active, setActive] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [dragging, setDragging] = useState(false);
+  const [hasSwiped, setHasSwiped] = useState(false);
   const lockRef = useRef(false);
   const dragStartRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
@@ -88,6 +89,7 @@ export default function CoverflowGallery({
       setDragOffset(0);
       if (Math.abs(distance) >= 42) {
         event.preventDefault();
+        setHasSwiped(true);
         step(distance < 0 ? 1 : -1);
       }
     }}
@@ -164,5 +166,8 @@ export default function CoverflowGallery({
         }}
       />)}
     </div>
+    {!hasSwiped && <div className="originkit-swipe-hint" aria-hidden="true">
+      <span>Swipe to see more</span><i>↔</i>
+    </div>}
   </div>;
 }

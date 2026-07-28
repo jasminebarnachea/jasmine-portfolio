@@ -501,7 +501,8 @@
   user-select: none;
 }
 
-.originkit-coverflow-dots { display: none; }
+.originkit-coverflow-dots,
+.originkit-swipe-hint { display: none; }
 
 .originkit-coverflow-stage {
   position: relative;
@@ -989,11 +990,58 @@
     transition: width .2s ease, opacity .2s ease, background-color .2s ease;
   }
 
+  .originkit-coverflow-dots button:focus {
+    outline: none;
+  }
+
+  .originkit-coverflow-dots button:focus-visible {
+    box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink);
+  }
+
   .originkit-coverflow-dots button.is-active {
     width: 18px;
     background: var(--ink);
     opacity: 1;
   }
+
+  .originkit-swipe-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 27px;
+    z-index: 31;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    color: var(--ink);
+    box-shadow: 0 6px 18px #00000012;
+    backdrop-filter: blur(8px);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .originkit-swipe-hint span {
+    font: 9px var(--mono);
+  }
+
+  .originkit-swipe-hint i {
+    color: inherit;
+    font: 13px/1 var(--sans);
+    animation: project-swipe-hint 1.25s ease-in-out infinite;
+  }
+}
+
+@keyframes project-swipe-hint {
+  0%, 100% { transform: translateX(-2px); opacity: .55; }
+  50% { transform: translateX(3px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .originkit-swipe-hint i { animation: none; }
 }
 
 @media (max-width: 360px) {
