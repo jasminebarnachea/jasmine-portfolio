@@ -41,6 +41,7 @@ export default function CoverflowGallery({
   const [dragOffset, setDragOffset] = useState(0);
   const [dragging, setDragging] = useState(false);
   const [hasSwiped, setHasSwiped] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState<"next" | "previous" | null>(null);
   const lockRef = useRef(false);
   const dragStartRef = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
@@ -51,6 +52,7 @@ export default function CoverflowGallery({
   const step = useCallback((direction: number) => {
     if (count < 2 || lockRef.current) return;
     lockRef.current = true;
+    setSwipeDirection(direction > 0 ? "next" : "previous");
     setActive((current) => (current + direction + count) % count);
     window.setTimeout(() => { lockRef.current = false; }, 620);
   }, [count]);
@@ -69,6 +71,7 @@ export default function CoverflowGallery({
 
   return <div
     className="originkit-coverflow"
+    data-swipe-direction={swipeDirection ?? undefined}
     style={style}
     tabIndex={0}
     role="group"
@@ -147,6 +150,7 @@ export default function CoverflowGallery({
           onClick={() => {
             if (!suppressClickRef.current && !lockRef.current && index !== active) {
               lockRef.current = true;
+              setSwipeDirection(index > active ? "next" : "previous");
               setActive(index);
               window.setTimeout(() => { lockRef.current = false; }, 620);
             }

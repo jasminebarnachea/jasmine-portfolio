@@ -896,6 +896,8 @@
     height: 480px;
     margin-top: 14px;
     overflow: hidden;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
   .project-card-coverflow > .originkit-coverflow {
@@ -906,6 +908,8 @@
     align-items: flex-start;
     cursor: grab;
     touch-action: pan-y;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
   .project-card-coverflow > .originkit-coverflow:active { cursor: grabbing; }
@@ -919,6 +923,8 @@
   .project-card-coverflow .originkit-coverflow-stage {
     margin-right: auto;
     margin-left: auto;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
   .project-card--coverflow {
@@ -970,7 +976,27 @@
   }
 
   .project-card-coverflow .originkit-coverflow-card > i {
+    display: none !important;
     border-radius: 18px;
+  }
+
+  .project-card-coverflow .originkit-coverflow-card[aria-current="true"] {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .project-card-coverflow .originkit-coverflow-card[aria-current="true"] .project-card--coverflow {
+    box-shadow: 0 20px 34px rgb(0 0 0 / 34%) !important;
+  }
+
+  .project-card-coverflow > .originkit-coverflow[data-swipe-direction="next"]
+    .originkit-coverflow-card[aria-current="true"] {
+    animation: mobile-project-swipe-next .42s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .project-card-coverflow > .originkit-coverflow[data-swipe-direction="previous"]
+    .originkit-coverflow-card[aria-current="true"] {
+    animation: mobile-project-swipe-previous .42s cubic-bezier(.22, 1, .36, 1);
   }
 
   /* Mobile uses swipe navigation, so remove cropped back-card previews. */
@@ -1010,6 +1036,16 @@
     font: 13px/1 var(--sans);
     animation: project-swipe-hint 1.25s ease-in-out infinite;
   }
+}
+
+@keyframes mobile-project-swipe-next {
+  from { margin-left: 32px; opacity: .35; }
+  to { margin-left: 0; opacity: 1; }
+}
+
+@keyframes mobile-project-swipe-previous {
+  from { margin-left: -32px; opacity: .35; }
+  to { margin-left: 0; opacity: 1; }
 }
 
 /* Keep the chatbot launcher pinned to the right while the page scrolls. */
