@@ -498,7 +498,12 @@
   perspective: 1600px;
   overflow: hidden;
   outline: none;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
 }
+
+.originkit-coverflow:active { cursor: grabbing; }
 
 .originkit-coverflow-stage {
   position: relative;
@@ -518,6 +523,11 @@
   transform-style: preserve-3d;
   transform-origin: center;
   transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .6s cubic-bezier(.22,1,.36,1), box-shadow .25s ease;
+}
+
+.originkit-coverflow-card.is-dragging {
+  transition: none !important;
+  pointer-events: none !important;
 }
 
 .originkit-coverflow-card[aria-current="true"] {
@@ -945,6 +955,12 @@
 
   .project-card-coverflow .originkit-coverflow-card > i {
     border-radius: 18px;
+  }
+
+  /* Mobile uses swipe navigation, so remove cropped back-card previews. */
+  .project-card-coverflow .originkit-coverflow-card:not([aria-current="true"]) {
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 }
 

@@ -38,7 +38,11 @@ export default function CoverflowGallery({
   renderSlide,
 }: CoverflowGalleryProps) {
   const [active, setActive] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [dragging, setDragging] = useState(false);
   const lockRef = useRef(false);
+  const dragStartRef = useRef<number | null>(null);
+  const suppressClickRef = useRef(false);
   const count = slides.length;
 
   const step = useCallback((direction: number) => {
@@ -63,6 +67,42 @@ export default function CoverflowGallery({
     role="group"
     aria-roledescription="carousel"
     aria-label="Project screenshots"
+    onPointerDown={(event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      dragStartRef.current = event.clientX;
+      suppressClickRef.current = false;
+      setDragging(true);
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }}
+    onPointerMove={(event) => {
+      if (dragStartRef.current === null) return;
+      const distance = event.clientX - dragStartRef.current;
+      if (Math.abs(distance) > 5) suppressClickRef.current = true;
+      setDragOffset(Math.max(-110, Math.min(110, distance)));
+    }}
+    onPointerUp={(event) => {
+      if (dragStartRef.current === null) return;
+      const distance = event.clientX - dragStartRef.current;
+      dragStartRef.current = null;
+      setDragging(false);
+      setDragOffset(0);
+      if (Math.abs(distance) >= 42) {
+        event.preventDefault();
+        step(distance < 0 ? 1 : -1);
+      }
+    }}
+    onPointerCancel={() => {
+      dragStartRef.current = null;
+      setDragging(false);
+      setDragOffset(0);
+    }}
+    onClickCapture={(event) => {
+      if (suppressClickRef.current) {
+        event.preventDefault();
+        event.stopPropagation();
+        suppressClickRef.current = false;
+      }
+    }}
     onKeyDown={(event) => {
       if (event.key === "ArrowRight") step(1);
       if (event.key === "ArrowLeft") step(-1);
@@ -77,13 +117,13 @@ export default function CoverflowGallery({
         const scale = Math.max(.55, 1 - distance * .16);
         const translateX = relative * (gap * 26);
         const translateZ = -distance * 200;
-        const transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${-relative * tilt}deg) rotateZ(${relative * sideTilt}deg) scale(${scale})`;
+        const transform = `translate(-50%, -50%) translateX(${translateX + dragOffset}px) translateZ(${translateZ}px) rotateY(${-relative * tilt}deg) rotateZ(${relative * sideTilt}deg) scale(${scale})`;
 
         return <div
-          className="originkit-coverflow-card"
+          className={`originkit-coverflow-card ${dragging ? "is-dragging" : ""}`}
           key={`${slide.image.src}-${index}`}
           onClick={() => {
-            if (!lockRef.current && index !== active) {
+            if (!suppressClickRef.current && !lockRef.current && index !== active) {
               lockRef.current = true;
               setActive(index);
               window.setTimeout(() => { lockRef.current = false; }, 620);
