@@ -485,7 +485,7 @@
   margin: 0 0 0 32px;
 }
 
-.desktop-project-card > a {
+.desktop-project-card > a.desktop-project-demo {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -494,6 +494,48 @@
   border-bottom: 1px solid currentColor;
   font: 10px var(--mono);
   text-decoration: none;
+}
+
+.desktop-project-url {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 27px 27px;
+  align-items: center;
+  gap: 3px;
+  margin: 13px 0 0 32px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--paper) 92%, var(--ink));
+}
+
+.desktop-project-url > span {
+  min-width: 0;
+  overflow: hidden;
+  padding-left: 6px;
+  color: var(--copy);
+  font: 11px/1.4 var(--mono);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: text;
+}
+
+.desktop-project-url button,
+.desktop-project-url a {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--copy);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.desktop-project-url button:hover,
+.desktop-project-url a:hover {
+  color: var(--ink);
 }
 
 .desktop-project-see-all {
