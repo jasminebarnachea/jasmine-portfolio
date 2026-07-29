@@ -72,18 +72,19 @@
 
 .intro .socials a {
   justify-content: center;
-  min-height: 33px;
-  padding: 6px 10px;
+  min-height: 30px;
+  padding: 5px 8px;
   border: 1px solid var(--line);
   border-radius: 9px;
   background: var(--paper);
   color: var(--ink);
+  font-size: 10px;
   transition: transform .2s ease, border-color .2s ease, background-color .2s ease;
 }
 
 .intro .socials a svg {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
 }
 
 .intro .hero-role {
@@ -549,6 +550,24 @@
 .resume-primary .stack-icon svg {
   width: 13px;
   height: 13px;
+}
+
+.stack-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 0 0 3px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--copy);
+  font: 9px var(--mono);
+  cursor: pointer;
+}
+
+.stack-see-all:hover {
+  color: var(--ink);
 }
 
 .resume-details {
@@ -1589,4 +1608,22 @@
   border-color: #ddd;
   background: #fff !important;
   color: #111 !important;
+}
+
+/* Preserve Next.js logo contrast against global theme text overrides. */
+:root[data-theme="light"] .stack-icon--next-js {
+  border: 1px solid #111;
+  background: #111 !important;
+  color: #fff !important;
+}
+
+:root[data-theme="dark"] .stack-icon--next-js {
+  border: 1px solid #ddd;
+  background: #fff !important;
+  color: #111 !important;
+}
+
+:root[data-theme="light"] .stack-icon--next-js svg,
+:root[data-theme="dark"] .stack-icon--next-js svg {
+  color: inherit !important;
 }
