@@ -170,6 +170,45 @@
   transform: scale(1);
 }
 
+/* Refined résumé timeline: a soft rail with crisp circular markers. */
+.resume-details .experience-list {
+  padding-left: 22px;
+}
+
+.resume-details .experience-list::before {
+  left: 5px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--line) 7%, var(--copy) 50%, var(--line) 93%, transparent);
+  opacity: .75;
+}
+
+.resume-details .experience-dot {
+  left: -23px;
+  top: 4px;
+  width: 13px;
+  height: 13px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 0 0 3px var(--paper);
+}
+
+.resume-details .experience-dot::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.resume-details .experience-item + .experience-item .experience-dot {
+  top: 27px;
+}
+
 /* Give project cards the same soft geometry as the portfolio's other panels. */
 .project-card { border-radius: 18px; }
 
@@ -749,7 +788,7 @@
 /* Stack icons make the technology list easier to scan. */
 .stack-chip { display: inline-flex; align-items: center; gap: 7px; }
 .stack-icon { width: 20px; height: 20px; display: inline-grid; place-items: center; border-radius: 5px; background: #e9e9e9; color: #333; font: 600 8px/1 var(--mono); letter-spacing: -.06em; }
-.stack-icon--html { background: #f16529; color: #fff; }.stack-icon--css { background: #264de4; color: #fff; }.stack-icon--javascript { background: #f7df1e; color: #1b1b1b; }.stack-icon--typescript { background: #3178c6; color: #fff; }.stack-icon--react { background: #61dafb; color: #15232d; font-size: 14px; }.stack-icon--expo-go { background: #111; color: #fff; }.stack-icon--php { background: #777bb4; color: #fff; }.stack-icon--java { background: #e76f00; color: #fff; }.stack-icon--c { background: #00599c; color: #fff; }.stack-icon--mysql { background: #00758f; color: #fff; }.stack-icon--mongodb { background: #47a248; color: #fff; }.stack-icon--laravel { background: #ff2d20; color: #fff; }.stack-icon--rest-apis { background: #7b61ff; color: #fff; }.stack-icon--networking { background: #168aad; color: #fff; }.stack-icon--ccna { background: #049fd9; color: #fff; }.stack-icon--routing { background: #5b8c00; color: #fff; }.stack-icon--switching { background: #8e44ad; color: #fff; }
+.stack-icon--html { background: #f16529; color: #fff; }.stack-icon--css { background: #264de4; color: #fff; }.stack-icon--javascript { background: #f7df1e; color: #1b1b1b; }.stack-icon--typescript { background: #3178c6; color: #fff; }.stack-icon--react { background: #61dafb; color: #15232d; font-size: 14px; }.stack-icon--next-js { background: #111; color: #fff; }.stack-icon--vue-js { background: #42b883; color: #fff; }.stack-icon--flutter { background: #54c5f8; color: #063b5b; }.stack-icon--tailwind-css { background: #06b6d4; color: #fff; }.stack-icon--expo-go { background: #111; color: #fff; }.stack-icon--php { background: #777bb4; color: #fff; }.stack-icon--java { background: #e76f00; color: #fff; }.stack-icon--c { background: #00599c; color: #fff; }.stack-icon--mysql { background: #00758f; color: #fff; }.stack-icon--mongodb { background: #47a248; color: #fff; }.stack-icon--laravel { background: #ff2d20; color: #fff; }.stack-icon--rest-apis { background: #7b61ff; color: #fff; }.stack-icon--networking { background: #168aad; color: #fff; }.stack-icon--ccna { background: #049fd9; color: #fff; }.stack-icon--routing { background: #5b8c00; color: #fff; }.stack-icon--switching { background: #8e44ad; color: #fff; }
 
 /* Fixed-side chat launcher and conversation panel. */
 .jas-chat { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: grid; justify-items: end; gap: 12px; }

@@ -3,12 +3,13 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ApiIcon, CloudServerIcon, CodeCircleIcon, ComputerEthernetIcon, CssThreeIcon, Database02Icon,
   HtmlFiveIcon, JavaIcon, JavaScriptIcon, PhpIcon, ReactIcon, Router02Icon, ServerStack03Icon,
-  SmartPhone02Icon, SourceCodeSquareIcon, Typescript01Icon,
+  SmartPhone02Icon, SourceCodeSquareIcon, TailwindcssIcon, Typescript01Icon, WebDesign01Icon,
 } from "@hugeicons/core-free-icons";
 
 const toolIcons: Record<string, typeof SourceCodeSquareIcon> = {
   HTML: HtmlFiveIcon, CSS: CssThreeIcon, JavaScript: JavaScriptIcon, TypeScript: Typescript01Icon,
-  React: ReactIcon, "Expo Go": SmartPhone02Icon, PHP: PhpIcon, Java: JavaIcon, "C++": CodeCircleIcon,
+  React: ReactIcon, "Next.js": WebDesign01Icon, "Vue.js": SourceCodeSquareIcon, Flutter: SmartPhone02Icon,
+  "Tailwind CSS": TailwindcssIcon, "Expo Go": SmartPhone02Icon, PHP: PhpIcon, Java: JavaIcon, "C++": CodeCircleIcon,
   MySQL: Database02Icon, MongoDB: Database02Icon, Laravel: ServerStack03Icon, "REST APIs": ApiIcon,
   Networking: ComputerEthernetIcon, CCNA: CloudServerIcon, Routing: Router02Icon, Switching: ComputerEthernetIcon,
 };

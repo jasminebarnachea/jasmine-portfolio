@@ -76,7 +76,7 @@ export const certifications: Certification[] = [
 export const tools = ["C++", "Java", "HTML", "CSS", "JavaScript", "TypeScript", "React", "Expo Go", "MySQL", "MongoDB", "Laravel", "REST APIs", "Networking"];
 
 export const stackGroups = [
-  { name: "Frontend", tools: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Expo Go"] },
+  { name: "Frontend", tools: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Vue.js", "Flutter", "Tailwind CSS", "Expo Go"] },
   { name: "Backend & Data", tools: ["PHP", "Java", "C++", "MySQL", "MongoDB", "Laravel", "REST APIs"] },
   { name: "Networking", tools: ["Networking", "CCNA", "Routing", "Switching"] },
 ];
