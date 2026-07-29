@@ -17,7 +17,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <head>
       <script dangerouslySetInnerHTML={{ __html: `
         (() => {
-          if (!window.matchMedia("(max-width: 760px)").matches) return;
           if ("scrollRestoration" in history) history.scrollRestoration = "manual";
           const reset = () => {
             const root = document.documentElement;
@@ -27,7 +26,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             requestAnimationFrame(() => { root.style.scrollBehavior = previous; });
           };
           reset();
+          window.addEventListener("load", reset);
           window.addEventListener("pageshow", reset);
+          window.addEventListener("beforeunload", () => window.scrollTo(0, 0));
         })();
       ` }} />
     </head>
