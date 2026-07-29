@@ -63,12 +63,6 @@ export default function Navigation() {
         </select>
         <HugeiconsIcon className="theme-control-icon" icon={ArrowDown01Icon} size={13} strokeWidth={1.8} aria-hidden="true" />
       </label>
-      <nav id="site-nav" className="nav">
-        <a href="#credentials">education</a>
-        <a href="#about">experience</a>
-        <a href="#focus">projects</a>
-        <a href="#contact">contact</a>
-      </nav>
     </div>
   </header>;
 }

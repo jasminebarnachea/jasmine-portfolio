@@ -35,19 +35,18 @@ export default function Hero() {
         </div>
       </div>
       <div className="intro reveal">
-        <h1>Jasmine<br />Barnachea</h1>
-        <p>I’m an Information Technology graduate. I’m building a strong foundation in web and mobile development, databases, and networks.</p>
-        <p>Right now, I’m looking for an entry-level opportunity where I can learn from a team and turn my skills into useful work.</p>
+        <h1>Jasmine Barnachea</h1>
+        <p className="hero-location">La Union, Philippines</p>
+        <p className="hero-role">Full-Stack Web Developer / Mobile App Developer</p>
         <div className="socials"><a className="icon-link" href="#email" onClick={(event) => { event.preventDefault(); setEmailOpen(true); }}><HugeiconsIcon icon={Mail02Icon} size={15} strokeWidth={1.7} aria-hidden="true" />email</a><a className="icon-link" href="https://github.com/jasminebarnachea" target="_blank" rel="noreferrer"><HugeiconsIcon icon={Github01Icon} size={15} strokeWidth={1.7} aria-hidden="true" />github</a><a className="icon-link" href="#resume" onClick={(event) => { event.preventDefault(); setResumeOpen(true); }}><HugeiconsIcon icon={File01Icon} size={15} strokeWidth={1.7} aria-hidden="true" />resume</a></div>
       </div>
     </div>
-    <div className="stats"><div className="stat"><strong>BSIT</strong><span>Graduate</span></div><div className="stat"><strong>2026</strong><span>Class of</span></div><div className="stat"><strong>Agoo</strong><span>La Union</span></div></div>
     {emailOpen && <div className="email-modal-backdrop" role="presentation" onClick={() => setEmailOpen(false)}>
       <div className="email-modal" role="dialog" aria-modal="true" aria-labelledby="email-modal-title" onClick={(event) => event.stopPropagation()}>
         <button className="email-modal-close" type="button" aria-label="Close email dialog" onClick={() => setEmailOpen(false)}><HugeiconsIcon icon={Cancel01Icon} size={23} strokeWidth={1.7} aria-hidden="true" /></button>
         <span className="section-title">Get in touch</span>
-        <h2 id="email-modal-title">say hello</h2>
-        <p>For work, collaboration, or just to say hi — drop me a line.</p>
+        <h2 id="email-modal-title">let&apos;s connect</h2>
+        <p>I&apos;m open to development opportunities, collaborative projects, and new ideas.</p>
         <div className="email-modal-address"><span>{email}</span><button className="icon-button-label" type="button" onClick={copyEmail}><HugeiconsIcon icon={Copy01Icon} size={15} strokeWidth={1.8} aria-hidden="true" />Copy</button></div>
         <a className="email-modal-open icon-link icon-link--center" href={`mailto:${email}`}><HugeiconsIcon icon={Mail02Icon} size={16} strokeWidth={1.7} aria-hidden="true" />Open mail app</a>
       </div>

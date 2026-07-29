@@ -73,8 +73,8 @@ export default function Focus() {
     return () => document.removeEventListener("keydown", closeOnEscape);
   }, [activeVideo]);
 
-  return <section id="focus" className="section" ref={sectionRef}>
-    <div className="section-head"><span className="section-title">03 — projects</span></div>
+  return <section id="focus" className="section mobile-project-showcase" ref={sectionRef}>
+    <div className="section-head"><span className="section-title">06 — Projects</span></div>
     <div className="project-card-coverflow">
       <CoverflowGallery
         autoplay={false}
