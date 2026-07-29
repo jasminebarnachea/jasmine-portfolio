@@ -3,36 +3,33 @@
 import { useEffect } from "react";
 
 const revealSelector = [
-  ".stats .stat",
+  ".hero-grid .intro h1",
+  ".hero-grid .hero-location",
+  ".hero-grid .hero-role",
+  ".hero-grid .socials",
   ".section-head",
-  ".about-education .experience-list",
-  ".about-education .experience-item",
-  ".about-line",
-  ".timeline-row",
+  ".professional-summary-copy p",
+  ".resume-details .experience-item",
   ".stack-group",
-  ".project-details",
-  ".cert-card h3",
-  ".cert-card p",
+  ".desktop-project-card",
+  ".desktop-project-see-all",
+  ".certificate-name-list a",
+  ".desktop-contact h2",
+  ".desktop-contact > p",
+  ".desktop-contact-email",
+  ".desktop-contact-links",
+  ".mobile-project-showcase .project-details",
   ".contact .shell > .section-title",
   ".contact .shell > h2",
   ".contact .shell > p",
   ".contact .shell > .email",
 ].join(", ");
 
-const mobileRevealSelector = [
-  ".hero-grid .intro h1",
-  ".hero-grid .intro p",
-  ".hero-grid .socials",
-].join(", ");
-
 export default function ScrollReveal() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const selector = window.matchMedia("(max-width: 650px)").matches
-      ? `${revealSelector}, ${mobileRevealSelector}`
-      : revealSelector;
-    const elements = document.querySelectorAll<HTMLElement>(selector);
+    const elements = document.querySelectorAll<HTMLElement>(revealSelector);
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {
