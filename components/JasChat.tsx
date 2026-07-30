@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, SentIcon, SparklesIcon } from "@hugeicons/core-free-icons";
 
@@ -22,6 +22,11 @@ export default function JasChat() {
     setOpen(true);
     window.setTimeout(() => inputRef.current?.focus(), 0);
   };
+
+  useEffect(() => {
+    window.addEventListener("open-jas-chat", openChat);
+    return () => window.removeEventListener("open-jas-chat", openChat);
+  });
 
   const sendMessage = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

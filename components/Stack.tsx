@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { stackGroups } from "../data/portfolio";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { useState } from "react";
 import {
   ApiIcon, CloudServerIcon, CodeCircleIcon, ComputerEthernetIcon, CssThreeIcon, Database02Icon,
   HtmlFiveIcon, JavaIcon, JavaScriptIcon, PhpIcon, ReactIcon, Router02Icon, ServerStack03Icon,
@@ -19,17 +19,27 @@ const toolIcons: Record<string, typeof SourceCodeSquareIcon> = {
 
 const iconClass = (tool: string) => `stack-icon stack-icon--${tool.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 
-export default function Stack() {
-  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({});
+type StackProps = {
+  variant?: "featured" | "archive";
+};
 
-  return <section className="section stack-section">
-    <div className="section-head"><span className="section-title"><span className="section-number-desktop">04 — Stack</span><span className="section-number-mobile">02 — Stack</span></span></div>
-    <div className="stack-groups">{stackGroups.map((group) => {
-      const isExpanded = expandedGroups[group.name] || group.tools.length <= 4;
-      const visibleTools = isExpanded ? group.tools : group.tools.slice(0, 4);
+export default function Stack({ variant = "featured" }: StackProps) {
+  const visibleGroups = variant === "archive"
+    ? stackGroups
+    : stackGroups.filter((group) => group.name !== "Developer Tools");
+
+  return <section id="stack" className={`section stack-section ${variant === "archive" ? "stack-archive" : ""}`}>
+    <div className="section-head">
+      <span className="section-title">04 — Tech Stack</span>
+      {variant === "featured" && <Link href="/stack" prefetch>See all stacks →</Link>}
+    </div>
+    <div className="stack-groups">{visibleGroups.map((group) => {
+      const visibleTools = variant === "archive"
+        ? group.tools
+        : group.tools.slice(0, group.name === "Frontend" ? 7 : 4);
       return <div className="stack-group" key={group.name}><h3>{group.name}</h3><div className="chips-large">{visibleTools.map((tool) => {
-      return <span className="stack-chip" key={tool}><span className={iconClass(tool)} aria-hidden="true"><HugeiconsIcon icon={toolIcons[tool] || SourceCodeSquareIcon} size={14} strokeWidth={1.8} /></span>{tool}</span>;
-    })}</div>{group.tools.length > 4 && <button className="stack-see-all" type="button" onClick={() => setExpandedGroups((current) => ({ ...current, [group.name]: !current[group.name] }))}>{isExpanded ? "Show less" : "See all"}<span aria-hidden="true">{isExpanded ? "↑" : "↓"}</span></button>}</div>;
+        return <span className="stack-chip" key={tool}><span className={iconClass(tool)} aria-hidden="true"><HugeiconsIcon icon={toolIcons[tool] || SourceCodeSquareIcon} size={14} strokeWidth={1.8} /></span>{tool}</span>;
+      })}</div></div>;
     })}</div>
   </section>;
 }

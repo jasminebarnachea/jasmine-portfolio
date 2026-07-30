@@ -32,6 +32,10 @@ const projectImages = [
   [careerBridgeOne, careerBridgeTwo, careerBridgeThree],
 ];
 
+const featuredProjectIndexes = [3, 4, 5];
+const featuredProjects = featuredProjectIndexes.map((index) => projects[index]);
+const featuredProjectImages = featuredProjectIndexes.map((index) => projectImages[index]);
+
 export default function Focus() {
   const sectionRef = useRef<HTMLElement>(null);
   const lastProjectActionRef = useRef<{ key: string; time: number } | null>(null);
@@ -74,7 +78,7 @@ export default function Focus() {
   }, [activeVideo]);
 
   return <section id="focus" className="section mobile-project-showcase" ref={sectionRef}>
-    <div className="section-head"><span className="section-title">06 — Projects</span></div>
+    <div className="section-head"><span className="section-title">03 — Projects</span></div>
     <div className="project-card-coverflow">
       <CoverflowGallery
         autoplay={false}
@@ -85,17 +89,17 @@ export default function Focus() {
         tilt={8}
         sideTilt={4}
         opacity={48}
-        slides={projects.map((project, index) => ({
-          image: { src: projectImages[index][0]?.src || "", alt: project.title },
+        slides={featuredProjects.map((project, index) => ({
+          image: { src: featuredProjectImages[index][0]?.src || "", alt: project.title },
           title: project.title,
         }))}
         renderSlide={(_, index, isActive) => {
-          const project = projects[index];
+          const project = featuredProjects[index];
           return <article className={`project-card project-card--coverflow ${isActive ? "is-front" : ""}`}>
-            <div className={`project-gallery ${projectImages[index].length === 3 ? "project-gallery--three" : ""} ${projectImages[index].length === 0 ? "project-gallery--empty" : ""}`}>
-              {projectImages[index].length === 0
+            <div className={`project-gallery ${featuredProjectImages[index].length === 3 ? "project-gallery--three" : ""} ${featuredProjectImages[index].length === 0 ? "project-gallery--empty" : ""}`}>
+              {featuredProjectImages[index].length === 0
                 ? <span className="project-placeholder" aria-hidden="true">CB<span>AI</span></span>
-                : projectImages[index].map((image, imageIndex) => <div
+                : featuredProjectImages[index].map((image, imageIndex) => <div
                   className={`project-image-frame image-${imageIndex + 1}`}
                   key={image.src}
                 ><Image src={image} alt={`${project.title} app screen ${imageIndex + 1}`} className="project-image" /></div>)}

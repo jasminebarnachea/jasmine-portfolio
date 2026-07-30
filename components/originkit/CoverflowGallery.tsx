@@ -17,6 +17,7 @@ type CoverflowGalleryProps = {
   gap?: number;
   opacity?: number;
   autoplay?: boolean;
+  showControls?: boolean;
   showTitle?: boolean;
   style?: CSSProperties;
   renderSlide?: (slide: CoverflowSlide, index: number, active: boolean) => ReactNode;
@@ -33,6 +34,7 @@ export default function CoverflowGallery({
   gap = 4,
   opacity = 68,
   autoplay = false,
+  showControls = false,
   showTitle = false,
   style,
   renderSlide,
@@ -187,6 +189,10 @@ export default function CoverflowGallery({
         </div>;
       })}
     </div>
+    {showControls && <div className="originkit-coverflow-controls" aria-label="Project carousel controls">
+      <button type="button" onClick={() => step(-1)} aria-label="Previous project">‹</button>
+      <button type="button" onClick={() => step(1)} aria-label="Next project">›</button>
+    </div>}
     {!hasSwiped && <div className="originkit-swipe-hint" aria-hidden="true">
       <span>Swipe to see more</span><i>→</i>
     </div>}

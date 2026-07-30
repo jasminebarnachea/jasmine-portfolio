@@ -1,6 +1,6 @@
 export default function Credentials() {
   return <section id="credentials" className="section">
-    <div className="section-head"><span className="section-title"><span className="section-number-desktop">02 — Education</span><span className="section-number-mobile">03 — Education</span></span></div>
+    <div className="section-head"><span className="section-title">01 — Education</span></div>
     <div className="experience-list education-list">
       <article className="experience-item">
         <span className="experience-dot" aria-hidden="true" />

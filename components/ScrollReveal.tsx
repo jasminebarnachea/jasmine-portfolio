@@ -6,14 +6,20 @@ const revealSelector = [
   ".hero-grid .intro h1",
   ".hero-grid .hero-location",
   ".hero-grid .hero-role",
+  ".hero-grid .hero-summary",
   ".hero-grid .socials",
+  ".stats .stat",
   ".section-head",
   ".professional-summary-copy p",
-  ".resume-details .experience-item",
+  ".about-education .experience-list",
+  ".about-education .experience-item",
   ".stack-group",
+  ".stack-chip",
   ".desktop-project-card",
   ".desktop-project-see-all",
   ".certificate-name-list a",
+  ".certificate-screenshot-card",
+  ".gear-card",
   ".desktop-contact h2",
   ".desktop-contact > p",
   ".desktop-contact-email",
@@ -23,6 +29,7 @@ const revealSelector = [
   ".contact .shell > h2",
   ".contact .shell > p",
   ".contact .shell > .email",
+  ".contact-bottom > span",
 ].join(", ");
 
 export default function ScrollReveal() {
@@ -37,7 +44,7 @@ export default function ScrollReveal() {
           observer.unobserve(entry.target);
         }
       }),
-      { threshold: 0.15 },
+      { threshold: 0.12, rootMargin: "0px 0px -7% 0px" },
     );
 
     elements.forEach((element, index) => {

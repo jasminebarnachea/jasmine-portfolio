@@ -42,6 +42,11 @@ export const projects: Project[] = [
     languages: ["TypeScript", "Grok AI"],
     website: "https://career-bridge-ai-mauve.vercel.app",
   },
+  {
+    title: "TriFare Agoo",
+    description: "A mobile app for checking official tricycle fares, exploring routes and local landmarks, and planning trips around Agoo, La Union.",
+    languages: ["React Native", "Expo Go"],
+  },
 ];
 
 export type FocusArea = {
