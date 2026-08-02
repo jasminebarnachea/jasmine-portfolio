@@ -38,8 +38,8 @@ export default function Hero() {
         />
       </div>
       <div className="intro reveal">
-        <div className="hero-greeting" aria-label="Hi. I'm Jasmine.">
-          <span>Hi.</span>
+        <div className="hero-greeting" aria-label="Hi, I'm Jasmine.">
+          <span>Hi<span className="hero-greeting-period" aria-hidden="true">.</span></span>
           <p>I&apos;m <em>Jasmine.</em></p>
         </div>
         <div className="hero-summary">

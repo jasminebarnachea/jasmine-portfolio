@@ -3867,6 +3867,10 @@
 
 /* Keep the mobile greeting centered beneath the profile card. */
 @media (max-width: 650px) {
+  .hero-greeting-period {
+    display: none;
+  }
+
   .hero-grid .hero-greeting {
     grid-column: 1 / -1;
     grid-row: 2;
