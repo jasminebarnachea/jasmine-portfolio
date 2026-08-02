@@ -1,0 +1,39 @@
+.tilted-card-figure {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  perspective: 900px;
+}
+
+.tilted-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilted-card-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 5px 9px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  background: #fff;
+  color: #2d2d2d;
+  box-shadow: 0 7px 20px #00000014;
+  font-size: 10px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .tilted-card-caption { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilted-card-inner { transform: none !important; }
+}

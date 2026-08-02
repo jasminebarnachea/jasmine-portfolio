@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import ccnaEnterprise from "../assets/certficates/CCNA.jpg";
 import ccnaSwitch from "../assets/certficates/CCNA:Switch.jpg";
@@ -22,11 +21,17 @@ type CertificationsProps = {
 };
 
 export default function Certifications({ variant = "featured" }: CertificationsProps) {
-  const visibleCertifications = variant === "featured" ? certifications.slice(0, 4) : certifications;
+  const visibleCertifications = certifications;
 
   return <section id="certifications" className="section">
-    <div className="section-head"><span className="section-title">05 — Certifications</span>{variant === "featured" && <Link href="/certifications" prefetch>See all certificates →</Link>}</div>
-    <div className={`certificate-screenshot-grid ${variant === "archive" ? "certificate-screenshot-grid--archive" : ""}`}>{visibleCertifications.map((cert, index) => <a
+    <div className="section-head"><span className="section-title">05 — Certifications</span></div>
+    {variant === "featured" ? <div className="certificate-name-list">{visibleCertifications.map((cert, index) => <a
+      href={certificateImages[cert.image as keyof typeof certificateImages].src}
+      target="_blank"
+      rel="noreferrer"
+      key={cert.title}
+      aria-label={`View ${cert.title} certificate screenshot`}
+    ><span>0{index + 1}</span><strong>{cert.title}</strong><span aria-hidden="true">↗</span></a>)}</div> : <div className="certificate-screenshot-grid certificate-screenshot-grid--archive">{visibleCertifications.map((cert, index) => <a
       className="certificate-screenshot-card"
       href={certificateImages[cert.image as keyof typeof certificateImages].src}
       target="_blank"
@@ -36,6 +41,6 @@ export default function Certifications({ variant = "featured" }: CertificationsP
     >
       <span className="certificate-screenshot-frame"><Image src={certificateImages[cert.image as keyof typeof certificateImages]} alt={`${cert.title} certificate`} /></span>
       <span className="certificate-screenshot-copy"><span>0{index + 1}</span><strong>{cert.title}</strong><span aria-hidden="true">↗</span></span>
-    </a>)}</div>
+    </a>)}</div>}
   </section>;
 }

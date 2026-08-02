@@ -4,9 +4,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, Copy01Icon, Download02Icon, File01Icon, Github01Icon, Mail02Icon } from "@hugeicons/core-free-icons";
-import profilePhoto from "../assets/picture/jasmineicon.png";
 import transparentProfilePhoto from "../assets/picture/jasmineicon-transparent.png";
 import resumeImage from "../assets/picture/JasmineBarnachea-Portfolio.jpg";
+import ProfileCard from "./ui/ProfileCard";
+import "./ui/ProfileCard.css";
 
 export default function Hero() {
   const [emailOpen, setEmailOpen] = useState(false);
@@ -28,25 +29,30 @@ export default function Hero() {
 
   return <section className="hero">
     <div className="hero-grid">
-        <div className="portrait-wrap reveal">
-        <div className="portrait">
-          <Image src={profilePhoto} alt="Jasmine Barnachea" className="profile-photo profile-photo--opaque" priority />
-          <Image src={transparentProfilePhoto} alt="" className="profile-photo profile-photo--transparent" aria-hidden="true" />
-        </div>
+      <div className="portrait-wrap reveal">
+        <ProfileCard
+          avatarUrl={transparentProfilePhoto.src}
+          name="Jasmine Barnachea"
+          title="Full-Stack Developer"
+          className="hero-profile-card"
+        />
       </div>
       <div className="intro reveal">
-        <h1>Jasmine Barnachea</h1>
-        <div className="hero-summary">
-          <p>I’m a Full-Stack Developer building practical, intuitive web and mobile applications.</p>
-          <p>I enjoy turning ideas into responsive interfaces and reliable systems. I’m currently open to full-stack web and mobile development opportunities where I can contribute, collaborate, and continue growing.</p>
+        <div className="hero-greeting" aria-label="Hi. I'm Jasmine.">
+          <span>Hi.</span>
+          <p>I&apos;m <em>Jasmine.</em></p>
         </div>
-        <div className="socials"><a className="icon-link" href="#email" onClick={(event) => { event.preventDefault(); setEmailOpen(true); }}><HugeiconsIcon icon={Mail02Icon} size={15} strokeWidth={1.7} aria-hidden="true" />email</a><a className="icon-link" href="https://github.com/jasminebarnachea" target="_blank" rel="noreferrer"><HugeiconsIcon icon={Github01Icon} size={15} strokeWidth={1.7} aria-hidden="true" />github</a><a className="icon-link" href="#resume" onClick={(event) => { event.preventDefault(); setResumeOpen(true); }}><HugeiconsIcon icon={File01Icon} size={15} strokeWidth={1.7} aria-hidden="true" />resume</a></div>
+        <div className="hero-summary">
+          <p>I’m a Full-Stack Developer who creates practical, user-friendly web and mobile applications. I enjoy transforming ideas into responsive interfaces, seamless user experiences, and reliable systems.</p>
+          <p>I’m currently open to full-stack web and mobile development opportunities where I can contribute my skills, collaborate with creative teams, and continue growing as a developer.</p>
+        </div>
+        <div className="hero-profile-meta" aria-label="Profile details">
+          <div><span>Role</span><strong>Full-Stack<br />Developer</strong></div>
+          <div><span>Location</span><strong>La Union,<br />Philippines</strong></div>
+          <div><span>Status</span><strong>Open to<br />Work</strong></div>
+          <div><span>Focus</span><strong>Web &amp; Mobile<br />Development</strong></div>
+        </div>
       </div>
-    </div>
-    <div className="stats" aria-label="Profile highlights">
-      <div className="stat"><strong>BSIT</strong><span>Graduate</span></div>
-      <div className="stat"><strong>2026</strong><span>Class of</span></div>
-      <div className="stat"><strong>La Union</strong><span>Philippines</span></div>
     </div>
     {emailOpen && <div className="email-modal-backdrop" role="presentation" onClick={() => setEmailOpen(false)}>
       <div className="email-modal" role="dialog" aria-modal="true" aria-labelledby="email-modal-title" onClick={(event) => event.stopPropagation()}>

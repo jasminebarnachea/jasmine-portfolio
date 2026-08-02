@@ -20,6 +20,7 @@ import lguThree from "../assets/picture/lgu.png";
 import careerBridgeOne from "../assets/picture/cb.png";
 import careerBridgeTwo from "../assets/picture/cb1.png";
 import careerBridgeThree from "../assets/picture/cb2.png";
+import triFareOverview from "../assets/picture/trifare-agoo-overview.png";
 import { projects } from "../data/portfolio";
 import CoverflowGallery from "./originkit/CoverflowGallery";
 
@@ -30,9 +31,10 @@ const projectImages = [
   [advertiseOne, advertiseTwo, advertiseThree],
   [lguOne, lguTwo, lguThree],
   [careerBridgeOne, careerBridgeTwo, careerBridgeThree],
+  [triFareOverview],
 ];
 
-const featuredProjectIndexes = [3, 4, 5];
+const featuredProjectIndexes = [3, 6, 5, 4, 2, 1, 0];
 const featuredProjects = featuredProjectIndexes.map((index) => projects[index]);
 const featuredProjectImages = featuredProjectIndexes.map((index) => projectImages[index]);
 

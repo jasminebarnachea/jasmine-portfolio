@@ -1,12 +1,11 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Copy01Icon, ExternalLinkIcon, PlayCircleIcon } from "@hugeicons/core-free-icons";
 import { useState } from "react";
 import { projects } from "../data/portfolio";
-import CoverflowGallery from "./originkit/CoverflowGallery";
+import { CircularCarousel } from "./ui/circular-carousel";
 import capstoneOne from "../assets/picture/capstone1.jpg";
 import capstoneTwo from "../assets/picture/casptone2.jpg";
 import recipeOne from "../assets/picture/recipe1.jpg";
@@ -42,7 +41,7 @@ type DesktopProjectsProps = {
 export default function DesktopProjects({ variant = "featured" }: DesktopProjectsProps) {
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
   const orderedProjects = variant === "featured"
-    ? [projects[3], projects[6], projects[5]]
+    ? [projects[3], projects[6], projects[5], projects[4], projects[2], projects[1], projects[0]]
     : [projects[4], projects[2], projects[1], projects[0]];
 
   const copyUrl = async (url: string) => {
@@ -92,22 +91,17 @@ export default function DesktopProjects({ variant = "featured" }: DesktopProject
   return <section id="projects" className={`section desktop-projects ${variant === "archive" ? "projects-archive" : ""}`}>
     <div className="section-head">
       <span className="section-title">03 — Projects</span>
-      {variant === "featured" && <Link href="/projects" prefetch>See all projects →</Link>}
     </div>
-    {variant === "featured" ? <div className="desktop-project-coverflow">
-      <CoverflowGallery
-        slides={orderedProjects.map((project) => ({
-          image: { src: projectImages[project.title][0].src, alt: project.title },
+    {variant === "featured" ? <div className="desktop-project-circular">
+      <CircularCarousel
+        autoPlay={false}
+        items={orderedProjects.map((project) => ({
+          id: project.title,
           title: project.title,
+          description: project.description,
+          tag: project.languages[0],
         }))}
-        cardWidth={410}
-        cardHeight={470}
-        radius={18}
-        gap={8}
-        tilt={9}
-        sideTilt={5}
-        opacity={55}
-        renderSlide={(_, index, isActive) => renderProjectCard(index, isActive)}
+        renderItem={(_, index, isActive) => renderProjectCard(index, isActive)}
       />
     </div> : <div className="projects-archive-list">
       {orderedProjects.map((project, index) => <div key={project.title}>{renderProjectCard(index)}</div>)}

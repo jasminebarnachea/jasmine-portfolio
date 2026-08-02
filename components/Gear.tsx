@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import TiltedCard from "./ui/TiltedCard";
 
 const devices = [
   {
@@ -27,9 +31,29 @@ const devices = [
 export default function Gear() {
   return <section id="gear" className="section gear-section">
     <div className="section-head"><span className="section-title">06 — Gear · Devices</span></div>
-    <div className="gear-grid">{devices.map((device) => <a className={`gear-card gear-card--${device.slug}`} href={device.href} target="_blank" rel="noreferrer" key={device.name}>
-      <span className="gear-image"><Image src={device.image} width={942} height={598} alt={device.name} /></span>
-      <span className="gear-copy"><span><strong>{device.name}</strong><i aria-hidden="true">↗</i></span><small>{device.specs}</small></span>
-    </a>)}</div>
+    <motion.div
+      className="gear-grid"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
+      }}
+    >{devices.map((device) => <motion.div
+      className="gear-tilt-item"
+      key={device.name}
+      variants={{
+        hidden: { y: 24, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100, damping: 14 } },
+      }}
+    >
+      <TiltedCard captionText={device.name} rotateAmplitude={9} scaleOnHover={1.035} showTooltip>
+        <a className={`gear-card gear-card--${device.slug}`} href={device.href} target="_blank" rel="noreferrer">
+          <span className="gear-image"><Image src={device.image} width={942} height={598} alt={device.name} /></span>
+          <span className="gear-copy"><span><strong>{device.name}</strong><i aria-hidden="true">↗</i></span><small>{device.specs}</small></span>
+        </a>
+      </TiltedCard>
+    </motion.div>)}</motion.div>
   </section>;
 }
