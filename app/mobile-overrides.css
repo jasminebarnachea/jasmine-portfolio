@@ -3864,3 +3864,27 @@
     height: 430px !important;
   }
 }
+
+/* Keep the mobile greeting centered beneath the profile card. */
+@media (max-width: 650px) {
+  .hero-grid .hero-greeting {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: center;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center !important;
+  }
+
+  .hero-grid .hero-greeting > span,
+  .hero-grid .hero-greeting > p {
+    display: block;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center !important;
+  }
+}
