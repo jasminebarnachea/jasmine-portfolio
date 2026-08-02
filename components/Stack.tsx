@@ -30,7 +30,7 @@ export default function Stack({ variant = "featured" }: StackProps) {
 
   return <section id="stack" className={`section stack-section ${variant === "archive" ? "stack-archive" : ""}`}>
     <div className="section-head">
-      <span className="section-title">04 — Tech Stack</span>
+      <span className="section-title">02 — Tech Stack</span>
       {variant === "featured" && <Link href="/stack" prefetch>See all stacks →</Link>}
     </div>
     <div className="stack-groups">{visibleGroups.map((group) => {

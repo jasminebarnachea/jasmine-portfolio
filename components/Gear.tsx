@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { ExternalLinkIcon } from "@hugeicons/core-free-icons";
 import TiltedCard from "./ui/TiltedCard";
 
 const devices = [
@@ -30,7 +32,7 @@ const devices = [
 
 export default function Gear() {
   return <section id="gear" className="section gear-section">
-    <div className="section-head"><span className="section-title">06 — Gear · Devices</span></div>
+    <div className="section-head"><span className="section-title">07 — Gear · Devices</span></div>
     <motion.div
       className="gear-grid"
       initial="hidden"
@@ -51,7 +53,7 @@ export default function Gear() {
       <TiltedCard captionText={device.name} rotateAmplitude={9} scaleOnHover={1.035} showTooltip>
         <a className={`gear-card gear-card--${device.slug}`} href={device.href} target="_blank" rel="noreferrer">
           <span className="gear-image"><Image src={device.image} width={942} height={598} alt={device.name} /></span>
-          <span className="gear-copy"><span><strong>{device.name}</strong><i aria-hidden="true">↗</i></span><small>{device.specs}</small></span>
+          <span className="gear-copy"><span><strong>{device.name}</strong><i aria-hidden="true"><HugeiconsIcon icon={ExternalLinkIcon} size={16} strokeWidth={1.8} /></i></span><small>{device.specs}</small></span>
         </a>
       </TiltedCard>
     </motion.div>)}</motion.div>

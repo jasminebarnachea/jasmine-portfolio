@@ -90,7 +90,7 @@ export default function DesktopProjects({ variant = "featured" }: DesktopProject
 
   return <section id="projects" className={`section desktop-projects ${variant === "archive" ? "projects-archive" : ""}`}>
     <div className="section-head">
-      <span className="section-title">03 — Projects</span>
+      <span className="section-title">01 — Projects</span>
     </div>
     {variant === "featured" ? <div className="desktop-project-circular">
       <CircularCarousel

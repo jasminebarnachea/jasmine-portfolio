@@ -2067,9 +2067,17 @@
 }
 
 .gear-copy i {
+  display: inline-grid;
+  place-items: center;
   color: var(--faint);
   font-style: normal;
   transition: transform .25s ease, color .25s ease;
+}
+
+.gear-copy i svg {
+  display: block;
+  width: 16px;
+  height: 16px;
 }
 
 .gear-card:hover .gear-copy i {
@@ -3557,8 +3565,19 @@
 
 @media (max-width: 650px) {
   .certificates-education-summary {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
+
+  .education-summary,
+  .certificates-contact {
+    display: contents;
+  }
+
+  .certificates-education-summary > .education-summary > #credentials { order: 1; }
+  .certificates-education-summary > .certificates-contact > #about { order: 2; }
+  .certificates-education-summary > .education-summary > #certifications { order: 3; }
+  .certificates-education-summary > .certificates-contact > .social-card { order: 4; }
 
   .certificates-education-summary > .section,
   .education-summary > .section {
@@ -3577,6 +3596,12 @@
   .education-summary {
     padding-right: 0;
     border-right: 0;
+  }
+
+  #about,
+  #certifications,
+  .social-card {
+    border-top: 1px solid var(--line);
   }
 
   .education-summary > .section + .section {

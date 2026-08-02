@@ -23,7 +23,7 @@ const links: SocialLink[] = [
 export default function SocialCard() {
   return <section className="social-card" aria-labelledby="social-card-title">
     <div className="social-card-heading">
-      <span className="section-title">Get in touch</span>
+      <span className="section-title">06 — Socials</span>
       <h3 id="social-card-title">Let&apos;s connect.</h3>
     </div>
     <div className="social-orbit-card">

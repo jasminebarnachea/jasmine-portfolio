@@ -80,7 +80,7 @@ export default function Focus() {
   }, [activeVideo]);
 
   return <section id="focus" className="section mobile-project-showcase" ref={sectionRef}>
-    <div className="section-head"><span className="section-title">03 — Projects</span></div>
+    <div className="section-head"><span className="section-title">01 — Projects</span></div>
     <div className="project-card-coverflow">
       <CoverflowGallery
         autoplay={false}

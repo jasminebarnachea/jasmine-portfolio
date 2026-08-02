@@ -1,6 +1,6 @@
 export default function About() {
   return <section id="about" className="section">
-    <div className="section-head"><span className="section-title">02 — Professional Experience</span></div>
+    <div className="section-head"><span className="section-title">04 — Professional Experience</span></div>
     <div className="experience-list">
       <article className="experience-item">
         <span className="experience-dot" aria-hidden="true" />
