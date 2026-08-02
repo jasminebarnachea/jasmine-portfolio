@@ -336,6 +336,31 @@
   will-change: auto;
 }
 
+.hero-profile-meta > div.scroll-pop,
+.certificate-name-list a.scroll-pop,
+.stack-chip.scroll-pop {
+  transform: translateY(18px) scale(.985);
+}
+
+.hero-profile-meta > div.scroll-pop-visible,
+.certificate-name-list a.scroll-pop-visible,
+.stack-chip.scroll-pop-visible {
+  transform: none;
+}
+
+.social-orbit-card.scroll-pop {
+  transform: translateY(30px) scale(.94);
+}
+
+.social-orbit-card.scroll-pop-visible {
+  transform: none;
+}
+
+.social-orbit-card.scroll-pop-visible:hover,
+.social-orbit-card.scroll-pop-visible:focus-within {
+  transform: scale(1.025);
+}
+
 /* Draw each education/experience timeline and pop its dots in as entries appear. */
 .about-education .experience-list.scroll-pop {
   opacity: 1;

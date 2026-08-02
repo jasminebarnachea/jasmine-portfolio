@@ -3,33 +3,22 @@
 import { useEffect } from "react";
 
 const revealSelector = [
-  ".hero-grid .intro h1",
-  ".hero-grid .hero-location",
-  ".hero-grid .hero-role",
-  ".hero-grid .hero-summary",
-  ".hero-grid .socials",
-  ".stats .stat",
+  ".hero-grid .profile-effect-card",
+  ".hero-grid .hero-greeting",
+  ".hero-grid .hero-summary p",
+  ".hero-profile-meta > div",
   ".section-head",
-  ".professional-summary-copy p",
-  ".about-education .experience-list",
-  ".about-education .experience-item",
+  ".desktop-project-card",
+  ".mobile-project-showcase .project-card",
   ".stack-group",
   ".stack-chip",
-  ".desktop-project-card",
-  ".desktop-project-see-all",
+  ".education-summary .experience-item",
   ".certificate-name-list a",
   ".certificate-screenshot-card",
-  ".gear-card",
-  ".desktop-contact h2",
-  ".desktop-contact > p",
-  ".desktop-contact-email",
-  ".desktop-contact-links",
-  ".mobile-project-showcase .project-details",
-  ".contact .shell > .section-title",
-  ".contact .shell > h2",
-  ".contact .shell > p",
-  ".contact .shell > .email",
-  ".contact-bottom > span",
+  ".certificates-contact .experience-item",
+  ".social-card-heading",
+  ".social-orbit-card",
+  ".gear-tilt-item",
 ].join(", ");
 
 export default function ScrollReveal() {
@@ -49,7 +38,7 @@ export default function ScrollReveal() {
 
     elements.forEach((element, index) => {
       element.classList.add("scroll-pop");
-      element.style.setProperty("--scroll-pop-delay", `${Math.min(index % 4, 3) * 70}ms`);
+      element.style.setProperty("--scroll-pop-delay", `${Math.min(index % 5, 4) * 65}ms`);
       observer.observe(element);
     });
 
