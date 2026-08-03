@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
 type SocialLink = {
   label: string;
@@ -21,9 +21,11 @@ const links: SocialLink[] = [
 ];
 
 export default function SocialCard() {
+  const [activeSocial, setActiveSocial] = useState<string | null>(null);
+
   return <section className="social-card" aria-labelledby="social-card-title">
     <div className="social-card-heading">
-      <span className="section-title">06 — Socials</span>
+      <span className="section-title">07 — Socials</span>
       <h3 id="social-card-title">Let&apos;s connect.</h3>
     </div>
     <div className="social-orbit-card">
@@ -37,8 +39,13 @@ export default function SocialCard() {
         style={{ transitionDelay: `${index * 0.2}s` }}
         aria-label={link.label}
         title={link.label}
+        onMouseEnter={() => setActiveSocial(link.label)}
+        onMouseLeave={() => setActiveSocial(null)}
+        onFocus={() => setActiveSocial(link.label)}
+        onBlur={() => setActiveSocial(null)}
         key={link.label}
-      ><span className="social-orbit-icon">{link.icon}</span><span className="social-orbit-label">{link.label}</span></a>)}
+      ><span className="social-orbit-icon">{link.icon}</span></a>)}
+      <span className={`social-orbit-active-label ${activeSocial ? "is-visible" : ""}`} aria-hidden="true">{activeSocial}</span>
     </div>
   </section>;
 }

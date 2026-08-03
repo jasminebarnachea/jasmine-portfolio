@@ -24,7 +24,7 @@ export default function Certifications({ variant = "featured" }: CertificationsP
   const visibleCertifications = certifications;
 
   return <section id="certifications" className="section">
-    <div className="section-head"><span className="section-title">05 — Certifications</span></div>
+    <div className="section-head"><span className="section-title">06 — Certifications</span></div>
     {variant === "featured" ? <div className="certificate-name-list">{visibleCertifications.map((cert, index) => <a
       href={certificateImages[cert.image as keyof typeof certificateImages].src}
       target="_blank"

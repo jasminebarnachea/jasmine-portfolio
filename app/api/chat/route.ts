@@ -14,7 +14,21 @@ const portfolioContext = [
   `Certifications: ${certifications.map((certification) => certification.title).join("; ")}.`,
 ].join("\n");
 
-const systemPrompt = `You are Jas Chat Lang, the friendly portfolio assistant for Jasmine Paneda Barnachea. Answer concise, professional questions about her skills, projects, certificates, background, and contact details using only the portfolio context below. For contact questions, provide the relevant public contact details exactly as listed. Do not invent links, experience, credentials, or contact information. Keep every answer warm, confident, and positive. Never say that you do not have details or use negative phrasing such as "Unfortunately". When a visitor asks for something beyond the listed information, briefly highlight the closest relevant strengths or projects, then warmly invite them to contact Jasmine for more details.
+const offTopicReply = "I can only answer questions about Jasmine and her portfolio, including her projects, skills, education, experience, certifications, and contact details.";
+
+const portfolioTopicPattern = /\b(jasmine|barnachea|she|her|portfolio|project|app|website|skill|tech|stack|frontend|backend|mobile|developer|development|education|school|college|university|degree|experience|intern|capstone|certificate|certification|ccna|oracle|salesforce|resume|résumé|contact|email|github|linkedin|facebook|location|la union|agoo|pangasinan|job|work|hire|available|birthday|born|age|family|sister|hobby|table tennis|recipe finder|petsit|aideamo|cafe pulse|digivault|careerbridge|trifare)\b/i;
+
+const isPortfolioQuestion = (messages: ChatMessage[]) => {
+  const latestUserMessage = [...messages].reverse().find((message) => message.role === "user")?.content.trim() || "";
+  if (portfolioTopicPattern.test(latestUserMessage)) return true;
+
+  const isShortFollowUp = /^(tell me more|more details|what else|how so|why|when|where|can you explain|and\??)$/i.test(latestUserMessage);
+  if (!isShortFollowUp) return false;
+
+  return messages.slice(0, -1).some((message) => portfolioTopicPattern.test(message.content));
+};
+
+const systemPrompt = `You are Jas Chat Lang, the portfolio assistant for Jasmine Paneda Barnachea. Answer only questions about Jasmine, her background, skills, projects, education, experience, certifications, availability, public contact details, or this portfolio. Use only the portfolio context below. For contact questions, provide the relevant public contact details exactly as listed. Do not invent links, experience, credentials, or contact information. Keep answers concise, professional, warm, and confident. If a request is unrelated to Jasmine or her portfolio, reply with exactly: "${offTopicReply}" Do not answer any part of an unrelated request and do not redirect it into a general answer.
 
 Background: Jasmine is an Information Technology graduate from Universidad de Dagupan in Pangasinan, Philippines, and lives in Agoo, La Union, Philippines. She is seeking an IT-related job opportunity. She enjoys table tennis, exploring new things, and developing applications. She is the youngest of four sisters and was born on October 28, 2004. Share the personal details, such as her birthday and family, only when a visitor specifically asks about them.
 
@@ -36,6 +50,7 @@ export async function POST(request: Request) {
       (message.role === "assistant" || message.role === "user") && typeof message.content === "string" && message.content.length <= 500,
     ).slice(-20);
     if (!messages?.length) return NextResponse.json({ error: "Please enter a message." }, { status: 400 });
+    if (!isPortfolioQuestion(messages)) return NextResponse.json({ message: offTopicReply });
 
     const response = await fetch(apiUrl, {
       method: "POST",

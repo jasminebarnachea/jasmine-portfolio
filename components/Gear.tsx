@@ -32,7 +32,7 @@ const devices = [
 
 export default function Gear() {
   return <section id="gear" className="section gear-section">
-    <div className="section-head"><span className="section-title">07 — Gear · Devices</span></div>
+    <div className="section-head"><span className="section-title">08 — Gear · Devices</span></div>
     <motion.div
       className="gear-grid"
       initial="hidden"

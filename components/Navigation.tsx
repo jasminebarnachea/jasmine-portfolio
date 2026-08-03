@@ -23,7 +23,7 @@ const navLinks = [
 
 export default function Navigation() {
   const router = useRouter();
-  const [theme, setTheme] = useState<ThemePreference>("system");
+  const [theme, setTheme] = useState<ThemePreference>("light");
   const [menuOpen, setMenuOpen] = useState(false);
   const [localTime, setLocalTime] = useState("--:--");
   const transitionTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -46,7 +46,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as ThemePreference | null;
-    const preference = savedTheme === "light" || savedTheme === "dark" || savedTheme === "system" ? savedTheme : "system";
+    const preference = savedTheme === "light" || savedTheme === "dark" || savedTheme === "system" ? savedTheme : "light";
     setTheme(preference);
     applyTheme(preference);
   }, []);
@@ -119,9 +119,9 @@ export default function Navigation() {
           <label className="theme-control">
             <span className="sr-only">Color theme</span>
             <select value={theme} onChange={(event) => updateTheme(event.target.value as ThemePreference)} aria-label="Color theme">
-              <option value="system">System</option>
               <option value="light">Light</option>
               <option value="dark">Dark</option>
+              <option value="system">System</option>
             </select>
             <HugeiconsIcon className="theme-control-icon" icon={ArrowDown01Icon} size={13} strokeWidth={1.8} aria-hidden="true" />
           </label>

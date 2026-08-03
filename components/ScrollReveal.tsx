@@ -12,6 +12,7 @@ const revealSelector = [
   ".mobile-project-showcase .project-card",
   ".stack-group",
   ".stack-chip",
+  ".service-card-wrap",
   ".education-summary .experience-item",
   ".certificate-name-list a",
   ".certificate-screenshot-card",
