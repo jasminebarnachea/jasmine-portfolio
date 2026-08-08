@@ -22,11 +22,21 @@ const revealSelector = [
   ".gear-tilt-item",
 ].join(", ");
 
+const textRevealSelector = [
+  "main h1", "main h2", "main h3", "main h4",
+  "main p", "main strong",
+  "main .section-title", "main .mono-label",
+  "main .chip", "main .stack-chip",
+  "main .timeline-year", "main .timeline-place",
+  "footer h3", "footer p", "footer strong", "footer li", "footer span",
+].join(", ");
+
 export default function ScrollReveal() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const elements = document.querySelectorAll<HTMLElement>(revealSelector);
+    const textElements = document.querySelectorAll<HTMLElement>(textRevealSelector);
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -40,6 +50,12 @@ export default function ScrollReveal() {
     elements.forEach((element, index) => {
       element.classList.add("scroll-pop");
       element.style.setProperty("--scroll-pop-delay", `${Math.min(index % 5, 4) * 65}ms`);
+      observer.observe(element);
+    });
+
+    textElements.forEach((element, index) => {
+      element.classList.add("scroll-text");
+      element.style.setProperty("--scroll-text-delay", `${Math.min(index % 4, 3) * 45}ms`);
       observer.observe(element);
     });
 

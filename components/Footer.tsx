@@ -24,21 +24,9 @@ interface FooterSection {
 
 const footerLinks: FooterSection[] = [
   {
-    label: "Explore",
+    label: "Résumé",
     links: [
-      { title: "Projects", href: "#projects" },
-      { title: "Tech Stack", href: "#stack" },
-      { title: "What I Can Do", href: "#services" },
-      { title: "Education", href: "#credentials" },
-    ],
-  },
-  {
-    label: "Profile",
-    links: [
-      { title: "Experience", href: "#about" },
-      { title: "Certifications", href: "#certifications" },
-      { title: "Gear & Devices", href: "#gear" },
-      { title: "Résumé", href: "/Jasmine-Barnachea-Resume.pdf", external: true, icon: FileTextIcon },
+      { title: "View résumé", href: "/Jasmine-Barnachea-Resume.pdf", external: true, icon: FileTextIcon },
     ],
   },
   {

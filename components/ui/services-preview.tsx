@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Tick02Icon } from "@hugeicons/core-free-icons";
 
 type Service = {
   id: string;
@@ -73,6 +75,8 @@ const services: Service[] = [
 ];
 
 export default function ServicesPreview() {
+  const shouldReduceMotion = useReducedMotion();
+
   return <section id="services" className="section services-section">
     <div className="section-head services-heading">
       <span className="section-title">03 — What Can I Do</span>
@@ -86,11 +90,27 @@ export default function ServicesPreview() {
         <article className="service-card">
           <span className="service-card-number">0{index + 1}</span>
           <span className="service-card-icon" aria-hidden="true">
-            <img src={service.iconSrc} alt="" loading="lazy" />
+            <motion.img
+              src={service.iconSrc}
+              alt=""
+              loading="lazy"
+              initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.65, rotate: -12 }}
+              whileInView={shouldReduceMotion ? undefined : {
+                opacity: [0, 1, 1, 1],
+                scale: [0.65, 1.16, 0.94, 1],
+                rotate: [-12, 7, -3, 0],
+                y: [5, -3, 1, 0],
+              }}
+              viewport={{ once: true, amount: 0.7 }}
+              transition={{ duration: 0.85, delay: index * 0.08, ease: "easeOut" }}
+            />
           </span>
           <strong>{service.title}</strong>
           <ul className="service-card-details">
-            {service.items.map((item) => <li key={item}>{item}</li>)}
+            {service.items.map((item) => <li key={item}>
+              <HugeiconsIcon className="service-check-icon" icon={Tick02Icon} aria-hidden="true" />
+              <span>{item}</span>
+            </li>)}
           </ul>
         </article>
       </motion.li>)}
