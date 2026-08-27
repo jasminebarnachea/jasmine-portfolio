@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, SentIcon, SparklesIcon } from "@hugeicons/core-free-icons";
+import AIThinkingBlock from "./ui/AIThinkingBlock";
 
 type Message = { role: "assistant" | "user"; content: string };
 
@@ -17,6 +18,7 @@ export default function JasChat() {
   const [messages, setMessages] = useState<Message[]>([welcomeMessage]);
   const [isSending, setIsSending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const openChat = () => {
     setOpen(true);
@@ -27,6 +29,10 @@ export default function JasChat() {
     window.addEventListener("open-jas-chat", openChat);
     return () => window.removeEventListener("open-jas-chat", openChat);
   });
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages, isSending]);
 
   const sendMessage = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,8 +70,9 @@ export default function JasChat() {
         <button className="jas-chat-close" type="button" onClick={() => setOpen(false)} aria-label="Close chat"><HugeiconsIcon icon={Cancel01Icon} size={22} strokeWidth={1.7} aria-hidden="true" /></button>
       </header>
       <div className="jas-chat-messages" aria-live="polite">
-        {messages.map((message, index) => <p className={`jas-chat-message jas-chat-message--${message.role}`} key={`${message.role}-${index}`}>{message.content}</p>)}
-        {isSending && <p className="jas-chat-message jas-chat-message--assistant">Thinking…</p>}
+        {messages.map((message, index) => <p className={`jas-chat-message jas-chat-message--${message.role} ${message.role === "assistant" && index === messages.length - 1 && index > 0 ? "jas-chat-message--replying" : ""}`} key={`${message.role}-${index}`}>{message.content}</p>)}
+        {isSending && <AIThinkingBlock />}
+        <div ref={messagesEndRef} aria-hidden="true" />
       </div>
       <form className="jas-chat-form" onSubmit={sendMessage}>
         <label className="sr-only" htmlFor="jas-chat-input">Your message</label>

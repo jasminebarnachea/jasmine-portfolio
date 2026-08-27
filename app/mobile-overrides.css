@@ -2505,6 +2505,27 @@
 .jas-chat-form input { min-width: 0; flex: 1; border: 1px solid var(--line); border-radius: 9px; padding: 10px; background: var(--paper); color: var(--ink); font: 16px var(--sans); }
 .jas-chat-form button { flex: 0 0 auto; border: 0; border-radius: 9px; padding: 0 12px; background: var(--ink); color: var(--paper); font: 11px var(--mono); cursor: pointer; }
 .jas-chat-form button:disabled { cursor: not-allowed; opacity: .45; }
+.jas-thinking { width: min(100%, 300px); justify-self: start; padding: 4px 0; }
+.jas-thinking-status { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; font: 10px var(--mono); }
+.jas-thinking-status time { color: var(--faint); font-size: 9px; }
+.jas-thinking-label { color: transparent !important; background: linear-gradient(110deg, var(--copy) 28%, var(--ink) 45%, var(--copy) 62%); background-size: 220% 100%; background-clip: text; -webkit-background-clip: text; animation: jas-thinking-shimmer 2.2s linear infinite; }
+.jas-thinking-loader { display: inline-flex; align-items: center; gap: 2px; height: 12px; }
+.jas-thinking-loader i { width: 4px; height: 4px; border-radius: 50%; background: var(--ink); animation: jas-thinking-dot .9s ease-in-out infinite; }
+.jas-thinking-loader i:nth-child(2) { animation-delay: .15s; }.jas-thinking-loader i:nth-child(3) { animation-delay: .3s; }
+.jas-thinking-card { position: relative; height: 82px; overflow: hidden; padding: 8px 12px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--paper) 88%, var(--ink) 12%); }
+.jas-thinking-card::before, .jas-thinking-card::after { content: ""; position: absolute; z-index: 2; right: 0; left: 0; height: 28px; pointer-events: none; }
+.jas-thinking-card::before { top: 0; background: linear-gradient(to bottom, color-mix(in srgb, var(--paper) 88%, var(--ink) 12%) 20%, transparent); }
+.jas-thinking-card::after { bottom: 0; background: linear-gradient(to top, color-mix(in srgb, var(--paper) 88%, var(--ink) 12%) 20%, transparent); }
+.jas-thinking-scroll { animation: jas-thinking-scroll 6s linear infinite; }
+.jas-thinking-scroll p { margin: 0; padding: 5px 0; color: var(--copy); font: 11px/1.4 var(--sans); white-space: nowrap; }
+.jas-chat-message--replying { position: relative; overflow: hidden; animation: jas-reply-enter .48s cubic-bezier(.2,.8,.2,1) both; }
+.jas-chat-message--replying::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 20%, #fff8 48%, transparent 74%); transform: translateX(-120%); animation: jas-reply-sheen .9s .12s ease-out both; }
+@keyframes jas-thinking-shimmer { to { background-position: -220% 0; } }
+@keyframes jas-thinking-dot { 0%, 70%, 100% { transform: translateY(0); opacity: .35; } 35% { transform: translateY(-3px); opacity: 1; } }
+@keyframes jas-thinking-scroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes jas-reply-enter { from { opacity: 0; filter: blur(4px); transform: translateY(10px) scale(.98); } to { opacity: 1; filter: blur(0); transform: none; } }
+@keyframes jas-reply-sheen { to { transform: translateX(120%); } }
+@media (prefers-reduced-motion: reduce) { .jas-thinking-label, .jas-thinking-loader i, .jas-thinking-scroll, .jas-chat-message--replying, .jas-chat-message--replying::after { animation: none !important; } }
 @media (max-width: 650px) { .jas-chat { right: 15px; bottom: 15px; }.jas-chat-launcher { padding: 12px 14px; }.jas-chat-messages { max-height: 280px; } }
 
 @media (prefers-reduced-motion: no-preference) {
