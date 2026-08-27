@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Cancel01Icon, Copy01Icon, Download02Icon, File01Icon, Github01Icon, Mail02Icon } from "@hugeicons/core-free-icons";
 import transparentProfilePhoto from "../assets/picture/jasmineicon-transparent.png";
-import resumeImage from "../assets/picture/JasmineBarnachea-Portfolio.jpg";
 import ProfileCard from "./ui/ProfileCard";
 import "./ui/ProfileCard.css";
 
@@ -68,7 +66,7 @@ export default function Hero() {
       <div className="resume-modal" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title" onClick={(event) => event.stopPropagation()}>
         <button className="email-modal-close resume-modal-close" type="button" aria-label="Close resume preview" onClick={() => setResumeOpen(false)}><HugeiconsIcon icon={Cancel01Icon} size={23} strokeWidth={1.7} aria-hidden="true" /></button>
         <div className="resume-modal-head"><div><span className="section-title">Resume</span><h2 id="resume-modal-title">Jasmine Barnachea</h2></div><a className="resume-download icon-link" href="/Jasmine-Barnachea-Resume.pdf" download><HugeiconsIcon icon={Download02Icon} size={15} strokeWidth={1.8} aria-hidden="true" />Download PDF</a></div>
-        <div className="resume-preview"><Image src={resumeImage} alt="Jasmine Barnachea resume" /></div>
+        <div className="resume-preview"><iframe src="/Jasmine-Barnachea-Resume.pdf" title="Jasmine Barnachea résumé" /></div>
       </div>
     </div>}
   </section>;

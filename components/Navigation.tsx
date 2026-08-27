@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { ArrowDown01Icon, Download02Icon, Mail02Icon, SparklesIcon } from "@hugeicons/core-free-icons";
+import { Download02Icon, Mail02Icon, SparklesIcon } from "@hugeicons/core-free-icons";
+import BB8ThemeToggle from "./ui/BB8ThemeToggle";
 
-type ThemePreference = "system" | "light" | "dark";
+type ThemePreference = "light" | "dark";
 
 const applyTheme = (preference: ThemePreference) => {
-  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  document.documentElement.dataset.theme = preference === "system" ? systemTheme : preference;
+  document.documentElement.dataset.theme = preference;
 };
 
 const navLinks = [
@@ -46,19 +46,10 @@ export default function Navigation() {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as ThemePreference | null;
-    const preference = savedTheme === "light" || savedTheme === "dark" || savedTheme === "system" ? savedTheme : "light";
+    const preference = savedTheme === "dark" ? "dark" : "light";
     setTheme(preference);
     applyTheme(preference);
   }, []);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const followSystemTheme = () => {
-      if (theme === "system") applyTheme("system");
-    };
-    mediaQuery.addEventListener("change", followSystemTheme);
-    return () => mediaQuery.removeEventListener("change", followSystemTheme);
-  }, [theme]);
 
   useEffect(() => {
     const updateTime = () => setLocalTime(new Intl.DateTimeFormat("en-PH", {
@@ -116,15 +107,7 @@ export default function Navigation() {
       <div className="shell">
         <a className="wordmark" href="/"><span>Jasmine Barnachea</span></a>
         <div className="topbar-actions">
-          <label className="theme-control">
-            <span className="sr-only">Color theme</span>
-            <select value={theme} onChange={(event) => updateTheme(event.target.value as ThemePreference)} aria-label="Color theme">
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="system">System</option>
-            </select>
-            <HugeiconsIcon className="theme-control-icon" icon={ArrowDown01Icon} size={13} strokeWidth={1.8} aria-hidden="true" />
-          </label>
+          <BB8ThemeToggle dark={theme === "dark"} onChange={(dark) => updateTheme(dark ? "dark" : "light")} />
         </div>
       </div>
     </header>

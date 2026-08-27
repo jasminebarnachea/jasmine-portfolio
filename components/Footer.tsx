@@ -47,7 +47,7 @@ export default function Footer() {
       <AnimatedContainer className="site-footer-brand">
         <div>
           <strong>Jasmine Barnachea</strong>
-          <p>Full-Stack Developer creating practical web and mobile experiences.</p>
+          <p>Full-Stack Developer.</p>
         </div>
         <span>© {new Date().getFullYear()} Jasmine Barnachea. All rights reserved.</span>
       </AnimatedContainer>

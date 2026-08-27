@@ -38,7 +38,7 @@ ${portfolioContext}`;
 export async function POST(request: Request) {
   const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
   const apiKey = process.env.GROQ_API_KEY;
-  const model = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+  const model = process.env.GROQ_MODEL || "openai/gpt-oss-120b";
 
   if (!apiKey) {
     return NextResponse.json({ error: "Jas Chat Lang is not configured yet." }, { status: 503 });
