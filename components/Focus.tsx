@@ -34,7 +34,7 @@ const projectImages = [
   [triFareOverview],
 ];
 
-const featuredProjectIndexes = [3, 6, 5, 4, 2, 1, 0];
+const featuredProjectIndexes = [3, 1, 5, 6, 4, 2, 0];
 const featuredProjects = featuredProjectIndexes.map((index) => projects[index]);
 const featuredProjectImages = featuredProjectIndexes.map((index) => projectImages[index]);
 

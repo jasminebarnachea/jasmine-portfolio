@@ -41,7 +41,7 @@ type DesktopProjectsProps = {
 export default function DesktopProjects({ variant = "featured" }: DesktopProjectsProps) {
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
   const orderedProjects = variant === "featured"
-    ? [projects[3], projects[6], projects[5], projects[4], projects[2], projects[1], projects[0]]
+    ? [projects[3], projects[1], projects[5], projects[6], projects[4], projects[2], projects[0]]
     : [projects[4], projects[2], projects[1], projects[0]];
 
   const copyUrl = async (url: string) => {
