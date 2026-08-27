@@ -36,9 +36,9 @@ Portfolio context:
 ${portfolioContext}`;
 
 export async function POST(request: Request) {
-  const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-  const apiKey = process.env.GROQ_API_KEY;
-  const model = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+  const apiUrl = "https://api.x.ai/v1/chat/completions";
+  const apiKey = process.env.XAI_API_KEY;
+  const model = process.env.XAI_MODEL || "grok-4.6";
 
   if (!apiKey) {
     return NextResponse.json({ error: "Jas Chat Lang is not configured yet." }, { status: 503 });
@@ -65,14 +65,14 @@ export async function POST(request: Request) {
     const result = await response.json() as { choices?: Array<{ message?: { content?: string } }>; error?: { message?: string } };
     const content = result.choices?.[0]?.message?.content?.trim();
     if (!response.ok || !content) {
-      console.error("Groq API error", { status: response.status, message: result.error?.message });
+      console.error("xAI API error", { status: response.status, message: result.error?.message });
       return NextResponse.json({
         error: "The chat service could not respond. Please try again shortly.",
       }, { status: 502 });
     }
     return NextResponse.json({ message: content });
   } catch (error) {
-    console.error("Groq chat request failed", error);
+    console.error("xAI chat request failed", error);
     return NextResponse.json({ error: "The chat service is temporarily unavailable. Please try again shortly." }, { status: 502 });
   }
 }
